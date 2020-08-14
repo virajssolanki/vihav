@@ -126,3 +126,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = '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'
 EMAIL_USE_TLS = True
+
+django_heroku.settings(locals())
