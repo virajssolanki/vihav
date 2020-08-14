@@ -1,0 +1,355 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vihav</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/all.min.css' %}">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
+</head>
+<body>
+   
+    <!-- header Section start -->
+    <header>
+
+        <!-- <div class="container">
+
+            <div class=" row inner_content">
+                <div class="col-12">
+                    <div class="brand_logo">
+                        <img src="assets/img/logo.png" alt="logo">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <nav class="navnew navbar navbar-expand-lg">
+          <div class="container">
+            <a class="navbar-brand brand_logo" href="#">
+              <img src="{% static 'assets/img/logo.png' %}" alt="logo">
+            </a>
+          </div>
+          </nav>
+    </header>
+    <!-- header Section end -->
+   
+    <!-- banner Section start -->
+    <section id="banner">
+        <div class="container">
+           <div class="bnnr_content">
+               <h1 class="title">Exclusive</h1>
+                <h3 class="sub_title">Refer & Earn Program for <br> Vihav's client</h3>
+                <ul class="join_sign d-flex">
+                    <li><a href="{% url 'signup' %}" class="vihav_btn">Join Now</a></li>
+                    <li><a href="{% url 'login' %}" class="vihav_btn">Log In</a></li>
+                </ul>
+           </div>
+        </div>
+    </section>
+    <!-- banner Section end -->
+   
+    <!-- reward Section start -->
+    <section id="reward"  class="sec-pad">
+        <div class="container">
+           <div class="row">
+               <div class="col-12 text-center">
+                <div class="reward_content">
+                    <h3 class="slogan_txt">Help your Friend & Family to find their <br>
+                        dream Home with VIHAV & Earn</h3>
+                    <h2 class="title">
+                        Rewards
+                    </h2>
+                </div>
+               </div>
+               <div class="col-12 text-center">
+                   <div class="bottom px-5">
+                    <h3 class="brief">
+                        when your Friend book Property at Vihav’s <br>
+                        with your reference, You get 6% of amount direct to <br>
+                        your account.
+                       </h3>
+                   </div>
+               </div>
+           </div>
+
+        </div>
+    </section>
+    <!-- reward Section end -->
+    <div class="design_bar"></div>
+    <!-- works Section start -->
+    <section id="work"  class="sec-pad">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section_title">How It Works?</h2>
+                </div>
+            </div>
+            <div class="row process">
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 order-2 order-md-0 d-center">
+                            <div class="process_system">
+                                <h2 class="title">1. Refer Vihav to your Friend</h2>
+                                <p>
+                                    when your Friend book Property at Vihav’s  <br>
+                                    with your reference, You get 6% of amount direct to <br>
+                                    your account.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 order-1 order-md-0 d-end">
+                            <img src="{% static 'assets/img/works/work-3.png' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 d-start">
+                            <img src="{% static 'assets/img/works/work-2.png' %}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-md-6 d-center">
+                            <div class="process_system">
+                                <h2 class="title">2. Your Friend give your
+                                    Refference when Book</h2>
+                                    <p>
+                                        when your Friend book Property at Vihav’s  <br>
+                                        with your reference, You get 6% of amount direct to <br>
+                                        your account.
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 order-2 order-md-0 d-center">
+                            <div class="process_system">
+                                <h2 class="title">
+                                    3. Your Reward transfer to
+                                    your Bank Account
+                                </h2>
+                                <p>
+                                    when your Friend book Property at Vihav’s  <br>
+                                    with your reference, You get 6% of amount direct to <br>
+                                    your account.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 order-1 order-md-0 d-end">
+                            <img src="{% static 'assets/img/works/work-1.png' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- works Section end -->
+   
+    <!-- Faqs Section start -->
+    <section id="Faqs"  class="sec-pad">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 ">
+                    <h2 class="section_title">FAQs</h2>
+                </div>
+            </div>
+            <div class="row accordion_bar mt-5 pt-5">
+                <div class="col-12 d-end">
+                    
+                <div class="wrapper  bg-white">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <span class="dots mr-5"><i class="fas fa-circle"></i></span>What is refer & Earn plan ?
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                    </div>
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <span class="dots mr-5"><i class="fas fa-circle"></i></span>How refer & Earn Works ?
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                    </div>
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <span class="dots mr-5"><i class="fas fa-circle"></i></span>How I can refer to my Friend ?
+                        </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <span class="dots mr-5"><i class="fas fa-circle"></i></span>What benefit Do I Get ? 
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFive">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <span class="dots mr-5"><i class="fas fa-circle"></i></span>What benefit my referral Get ?
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingSix">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <span class="dots mr-5"><i class="fas fa-circle"></i></span>How I Receive my Reward ?
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingSeven">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                <span class="dots mr-5"><i class="fas fa-circle"></i></span>How I can contact customer support ? 
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Faqs Section end -->
+   
+    <!-- started Section start -->
+    <section id="started" class="sec-pad">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="bnnr_content">
+                        <h2 class="title">Ready to get started ?</h2>
+                        <ul class="join_sign">
+                            <li><a href="#" class="vihav_btn">Join Now</a></li>
+                            <li><a href="#" class="vihav_btn">Sign In</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- started Section end -->
+    <div class="design_bar"></div> 
+    <!-- nav Section start -->
+    <section id="navbar">
+        <nav class="navbar">
+            <div class="container">
+              
+                <div class="col-lg-10 col-12 d-center">
+                    <ul class="navs d-flex">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">legal</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">contact</a>
+                        </li>
+                      </ul>
+                </div>
+                <div class="col-lg-2 col-12">
+                    <ul class="ml-auto social-icon d-flex d-center">
+                        <li class=""><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class=""><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li class=""><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+          </nav>
+    </section>
+    <!-- nav Section end -->
+
+<!-- footer section start -->
+<footer>
+    <div class="container">
+        <div class="col-12 text-center">
+            <h5 class="copy">Copyright &copy; 2020 Vihav Group</h5>
+        </div>
+    </div>
+</footer>
+<!-- footer section end -->
+    <!-- Script tage goes here -->
+    <script src="{% static 'assets/js/jquery-3.5.1.slim.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script>
+//     $('.panel-collapse').on('show.bs.collapse', function () {
+//     $(this).siblings('.panel-heading').addClass('active');
+//   });
+
+//   $('.panel-collapse').on('hide.bs.collapse', function () {
+//     $(this).siblings('.panel-heading').removeClass('active');
+//   });
+    </script>
+</body>
+</html>

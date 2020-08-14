@@ -1,0 +1,17 @@
+{% extends "referral/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% include 'referral/nav.html' %}
+
+
+{% for i in users %}
+{% if i.profile.is_client == False %}
+<ul>
+    <li>{{ i }}</li>
+</ul>
+{% endif %}
+{% endfor %}
+
+{% endblock content %}
+
