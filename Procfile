@@ -1,1 +1,1 @@
-web: gunicorn megrut.wsgi
+web: gunicorn vihav.wsgi
