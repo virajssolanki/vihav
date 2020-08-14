@@ -26,7 +26,7 @@ SECRET_KEY = '(-6&2#epsfbxag^^(c1_0#m4i#r$na@szd_^p&#zup2p5*v^)t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vihavpriviledge.herokuapp.com']
+ALLOWED_HOSTS = ['vihavpriviledge.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -108,13 +108,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
-#--------------------------------------------------
-STATIC_DIRS = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'root')
 #-----------------------------------------------------
 STATICFILES_DIRS = [
-    STATIC_DIRS,]
+        os.path.join(BASE_DIR, 'static'),
+]
 
 AUTH_USER_MODEL = 'users.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
