@@ -57,7 +57,8 @@ header .navbar-nav .nav-item .nav-link:hover {
 }
 
 header .navnew{
-height: 70px;
+  height: 70px;
+
 }
 
 .navbar-toggler {
@@ -262,7 +263,7 @@ header {
 header::after {
   content: '';
   position: absolute;
-  width: 52%;
+  width: 51%;
   height: 20px;
   background-color: #e5b76d;
   left: 0px;
@@ -285,7 +286,7 @@ header::after {
 header::before {
   content: '';
   position: absolute;
-  width: 48%;
+  width: 49%;
   height: 20px;
   background-color: #2f332f;
   right: 0px;
@@ -317,9 +318,9 @@ header .brand_logo img {
 
 #banner .container {
   background: url("../img/banner/banners.png") no-repeat;
-  background-position: top left;
+  background-position: top center;
   margin-bottom: 30px;
-  padding: 290px 0px;
+  padding: 370px 0px;
 }
 
 @media (max-width: 1024px) {
@@ -346,7 +347,9 @@ header .brand_logo img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-left: 40px;
+
+  margin-left:  5rem !important;
+  margin-top: -12%;
 }
 
 @media (max-width: 576px) {
@@ -362,10 +365,9 @@ header .brand_logo img {
 }
 
 #banner .container .bnnr_content .title {
-  font-size: 170px;
+  font-size: 74px;
   line-height: auto;
   color: #fefefe;
-  text-transform: uppercase;
 }
 
 @media (max-width: 1024px) {
@@ -393,9 +395,17 @@ header .brand_logo img {
 }
 
 #banner .container .bnnr_content .sub_title {
-  font-size: 64px;
+  font-size: 48px;
   line-height: 70px;
   color: #fefefe;
+  text-transform: uppercase;
+}
+
+#banner .container .bnnr_content .sub_title span{
+  font-size: 40px;
+  line-height: 70px;
+  color: #fefefe;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1024px) {
@@ -469,6 +479,261 @@ header .brand_logo img {
     font-size: 18px;
   }
 }
+
+
+
+
+
+
+#banner .container .bnnr_content .stock-text1 {
+  left: 0px;
+  width: 100%;
+  top: 3rem;
+  position: relative;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  #banner .container .bnnr_content .stock-text {
+    bottom: 235px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .#banner .container .bnnr_content .stock-text {
+    bottom: 178px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #banner .container .bnnr_content .stock-text {
+    bottom: 178px;
+  }
+}
+
+@media (max-width: 575px) {
+  .#banner .container .bnnr_content .stock-text {
+    bottom: 135px;
+  }
+}
+
+#banner .container .bnnr_content .stock-text1 h2 {
+  font-size: 92px;
+  font-weight: 700;
+  font-family: "Oswald", sans-serif;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  position: absolute;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 90px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 60px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 575px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 27px;
+    margin-bottom: 25px;
+  }
+}
+
+#banner .container .bnnr_content .stock-text1 h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  -webkit-text-fill-color: transparent;
+}
+
+#banner .container .bnnr_content .stock-text1 h2:nth-child(2) {
+  color: rgba(0, 0, 0, 0.2);
+  -webkit-animation: animate 4s ease-in-out infinite;
+  animation: animate 4s ease-in-out infinite;
+}
+
+@-webkit-keyframes animate {
+  0%, 100% {
+    -webkit-clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+  }
+  50% {
+    -webkit-clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes animate {
+  0%, 100% {
+    -webkit-clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+  }
+  50% {
+    -webkit-clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+
+
+
+
+
+
+#banner .container .bnnr_content .stock-text {
+  left: 0px;
+  top: 9rem;
+  width: 100%;
+  position: relative;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  #banner .container .bnnr_content .stock-text {
+    bottom: 235px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .#banner .container .bnnr_content .stock-text {
+    bottom: 178px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #banner .container .bnnr_content .stock-text {
+    bottom: 178px;
+  }
+}
+
+@media (max-width: 575px) {
+  .#banner .container .bnnr_content .stock-text {
+    bottom: 135px;
+  }
+}
+
+#banner .container .bnnr_content .stock-text h2 {
+  font-size: 92px;
+  font-weight: 700;
+  font-family: "Oswald", sans-serif;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  position: absolute;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 90px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 60px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 575px) {
+  #banner .container .bnnr_content .stock-text h2 {
+    font-size: 27px;
+    margin-bottom: 25px;
+  }
+}
+
+#banner .container .bnnr_content .stock-text h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  -webkit-text-fill-color: transparent;
+}
+
+#banner .container .bnnr_content .stock-text h2:nth-child(2) {
+  color: rgba(0, 0, 0, 0.2);
+  -webkit-animation: animate 4s ease-in-out infinite;
+  animation: animate 4s ease-in-out infinite;
+}
+
+@-webkit-keyframes animate {
+  0%, 100% {
+    -webkit-clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+  }
+  50% {
+    -webkit-clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes animate {
+  0%, 100% {
+    -webkit-clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 69%, 100% 52%, 100% 100%, 0% 100%);
+  }
+  50% {
+    -webkit-clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #reward .container .reward_content {
   padding: 26px 0px;
