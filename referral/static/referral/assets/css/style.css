@@ -91,6 +91,27 @@ header .navnew{
   border: 2px solid #cc9e60;
 }
 
+.vihav_btn2 {
+  color: #fff;
+  background-color: #2f3330;
+  border: 2px solid #cc9e60;
+
+  padding: 15px 80px;
+  border-radius: 50px;
+  font-size: 26px;
+  
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+  -webkit-box-shadow: 0px 10px 10px 0px rgba(54, 54, 54, 0.9);
+          box-shadow: 0px 10px 10px 0px rgba(54, 54, 54, 0.9);
+}
+
+.vihav_btn2:hover {
+  background-color: #cc9e60;
+  color: #fff;
+  border: 2px solid transparent;
+}
+
 .design_bar {
   height: 20px;
   position: relative;
@@ -313,7 +334,7 @@ header .brand_logo img {
 }
 
 #banner {
-  padding-top: 30px;
+  padding-top: 0px;
 }
 
 #banner .container {
@@ -336,6 +357,12 @@ header .brand_logo img {
   }
 }
 
+
+#banner .container .bnnr_content img {
+    width: 10%;
+    margin-bottom: 20px;
+  }
+
 #banner .container .bnnr_content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -349,7 +376,7 @@ header .brand_logo img {
           justify-content: center;
 
   margin-left:  5rem !important;
-  margin-top: -12%;
+  margin-top: -22%;
 }
 
 @media (max-width: 576px) {
@@ -694,57 +721,23 @@ header .brand_logo img {
 }
 
 
+#reward .container {
+  background: url("../img/city.png") bottom left no-repeat ;
+  background-position: 10px 5px;
+  background-size: cover;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 #reward .container .reward_content {
   padding: 26px 0px;
-  background-color: #fff;
-  width: 95%;
+  width: 100%;
   margin-left: auto;
   border-top-left-radius: 500px;
-  border-bottom-left-radius: 500px;
+/*  border-bottom-left-radius: 500px;
   -webkit-box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  margin-bottom: 30px; */
 }
 
 @media (max-width: 575px) {
@@ -756,6 +749,12 @@ header .brand_logo img {
 
 #reward .container .reward_content .slogan_txt {
   font-size: 42px;
+  line-height: 56px;
+  font-family: Avant;
+}
+
+#reward .container .reward_content .slogan_txt2 {
+  font-size: 32px;
   line-height: 56px;
   font-family: Avant;
 }
