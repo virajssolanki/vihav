@@ -16,14 +16,30 @@ ALERT_CHOICES = (
     ('danger','red (canceled)'),
 )
 
+W_ALERT_CHOICES = (
+    ('table-success','green (approved)'),
+    ('table-warning', 'yellow (pending)'),
+    ('table-danger','red (canceled)'),
+)
 class Referrals(models.Model):
-	name = models.CharField(max_length=50)
-	number = models.CharField(max_length=10, blank=True)
+	name = models.CharField(max_length=50, blank=False, default='')
+	contact_number = models.CharField(max_length=10, blank=False, default='')
+	email = models.EmailField(blank=True)
+	location = models.CharField(max_length=100, blank=True)
 	date_posted = models.DateTimeField(default=timezone.now)
-	amount = models.FloatField(blank=True)
-	status = models.CharField(max_length=30, choices=STATUS_CHOICES, blank=True)
-	alert = models.CharField(max_length=30, choices=ALERT_CHOICES, blank=True)
+	amount = models.FloatField(blank=True, default=0)
+	status = models.CharField(max_length=30, default='pending', choices=STATUS_CHOICES)
+	alert = models.CharField(max_length=30, default='warning', choices=ALERT_CHOICES, blank=True)
+	note = models.TextField(max_length=350, blank=True)
 	reference = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.name
+
+class Withdraw(models.Model):
+	date_posted = models.DateTimeField(default=timezone.now)
+	amount = models.IntegerField(blank=True, default=0)
+	note = models.TextField(max_length=350, default='---', blank=True)
+	status = models.CharField(max_length=30, default='pending', choices=STATUS_CHOICES)
+	alert = models.CharField(max_length=30, default='table-warning', choices=W_ALERT_CHOICES, blank=True)
+	holder = models.ForeignKey(User, on_delete=models.CASCADE)

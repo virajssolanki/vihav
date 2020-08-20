@@ -290,7 +290,7 @@ body {
 }
 
 #banner .container .bnnr_content .title {
-  font-size: 74px;
+  font-size: 65px;
   line-height: auto;
   color: #fefefe;
   text-decoration: underline #cc9e60;
@@ -807,7 +807,7 @@ body {
   background: url("../img/banner/banner_3.png") no-repeat;
   background-position: center;
   background-size: contain;
-  padding: 190px 0px;
+  padding: 100px  ;
 }
 
 @media (max-width: 576px) {

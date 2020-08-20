@@ -1,7 +1,7 @@
 from django import forms
-from .models import User
+from .models import User, Profile, Bank
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Profile
+from referral.models import Referrals
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField(widget=forms.TextInput(attrs={'class': "form-control"}))
@@ -31,3 +31,15 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['name', 'city', 'number']
+
+class BankUpdateForm(forms.ModelForm):
+
+	class Meta:
+		model = Bank
+		fields = ['account_holder_name', 'bank_name', 'account_number', 'IFSC_code', 'branch', 'account_type']
+
+class NewReferral(forms.ModelForm):
+
+	class Meta:
+		model = Referrals
+		fields = ['name', 'contact_number', 'email', 'location']

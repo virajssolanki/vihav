@@ -58,9 +58,19 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.profile.name} Profile'
 
+
+ACC_TYPE_CHOICES = (
+    ('current','current'),
+    ('saving', 'saving'),
+)
 class Bank(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bank_name = models.CharField(max_length=100, blank=True)
-    IFSC = models.CharField(max_length=10, blank=True)
-    acc_no = models.CharField(max_length=40, blank=True)
-    acc_type = models.BooleanField(default=False)
+    account_holder_name = models.CharField(max_length=100, default="")
+    bank_name = models.CharField(max_length=100, default="")
+    branch = models.CharField(max_length=100, default="")
+    IFSC_code = models.CharField(max_length=10, default="")
+    account_number = models.CharField(max_length=40, default="")
+    account_type = models.CharField(max_length=100, default="", choices=ACC_TYPE_CHOICES)
+ 
+    def __str__(self):
+        return f'{self.user.profile.name} Bank'
