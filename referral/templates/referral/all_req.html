@@ -1,0 +1,86 @@
+{% extends "referral/consolebase.html" %}
+{% load crispy_forms_tags %}
+{% block title %}<title>console | all_requests</title>{% endblock title %}
+{% block head %}<h4>Console | all account creation request </h4>{% endblock head %}
+
+{% block content %}
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Account Requests</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    
+                    <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <th>Time</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>relation</th>
+                          </tr>
+{% for i in acc_req %}
+                          <tr class="{{ i.alert }}">
+                            <td>{{ i.date_posted|timesince }} ago</td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.number }}</td>
+                            <td>{{ i.user.email }}</td>
+                            <td>{{ i.city }}</td>
+                            <td>{{ i.i_am }}</td>
+                            <td>                  
+                        <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
+                          <i class="fas fa-check"></i>
+                        </a>
+
+                      </td>
+                      <td>
+                        <a href="{% url 'delete' i.id %}" class="btn btn-danger btn-sm btn-circle">
+                          <i class="fas fa-trash"></i>
+                        </a>                        
+                      </td>
+                          </tr>
+{% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+{% endblock %}

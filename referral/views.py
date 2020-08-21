@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from users.models import User, Bank
+from users.models import User, Bank, Profile
 from .models import Referrals, Withdraw
-from users.forms import BankUpdateForm, NewReferral
+from users.forms import BankUpdateForm, NewReferral, NewAdminReferral
 # Create your views here.
 def home(request):
 	user=request.user
@@ -60,11 +60,78 @@ def dashboard(request, email):
 @login_required
 def console(request):
 	if request.user.is_superuser:
-		users = User.objects.all()
+		user = request.user
+		if request.method == 'POST':
+			r_form = NewAdminReferral(request.POST)
+			if r_form.is_valid():
+				ref_email = r_form.cleaned_data.get('reference_email')
+				ref = User.objects.get(email=ref_email)
+				name  = r_form.cleaned_data.get('name')
+				referral = r_form.save(commit=False)
+				referral.reference = ref
+				referral.save()
+				messages.success(request, f'Referral {name} Added with reference {ref_email}')
+		r_form = NewAdminReferral()
+		acc_req = Profile.objects.filter(verified=False).order_by('-date_posted')
+		ref_req = Referrals.objects.order_by('-date_posted')
 		context = locals()
 		return render(request, 'referral/console.html', context)
 	else:
-		messages.success(request, f'sorry you dont havecaccess')
+		return render(request, 'referral/home.html')
+
+@login_required
+def all_req(request):
+	if request.user.is_superuser:
+		user = request.user
+		acc_req = Profile.objects.filter(verified=False).order_by('-date_posted')
+		context = locals()
+		return render(request, 'referral/all_req.html', context)
+	else:
+		return render(request, 'referral/home.html')
+
+@login_required
+def all_ref(request):
+	if request.user.is_superuser:
+		user = request.user
+		if request.method == 'POST':
+			r_form = NewAdminReferral(request.POST)
+			if r_form.is_valid():
+				ref_email = r_form.cleaned_data.get('reference_email')
+				ref = User.objects.get(email=ref_email)
+				name  = r_form.cleaned_data.get('name')
+				referral = r_form.save(commit=False)
+				referral.reference = ref
+				referral.save()
+				messages.success(request, f'Referral {name} Added with reference {ref_email}')
+		r_form = NewAdminReferral()
+		ref_req = Referrals.objects.order_by('-date_posted')
+		context = locals()
+		return render(request, 'referral/all_ref.html', context)
+	else:
+		return render(request, 'referral/home.html')
+
+@login_required
+def accept(request, pk):
+	if request.user.is_superuser:
+		acc = Profile.objects.get(id=pk)
+		acc.verified = True
+		acc.is_client = True
+		acc.save()
+		messages.success(request, f'Account created')
+		return redirect('console')
+	else:
+		return render(request, 'referral/home.html')
+
+@login_required
+def delete(request, pk):
+	if request.user.is_superuser:
+		acc = Profile.objects.get(id=pk)
+		acc.verified = True
+		acc.is_client = False
+		acc.save()
+		messages.success(request, f'Account rejected')
+		return redirect('console')
+	else:
 		return render(request, 'referral/home.html')
 
 @login_required
@@ -73,3 +140,4 @@ def withdraw(request):
 	Withdraw.objects.create(holder=user)
 	messages.success(request, f'Withdraw request submitted. Our executive will contact you. ')
 	return redirect('dashboard', email=user.email)
+

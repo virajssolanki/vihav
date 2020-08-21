@@ -1,17 +1,171 @@
-{% extends "referral/base.html" %}
+{% extends "referral/consolebase.html" %}
 {% load crispy_forms_tags %}
+
+{% block title %}<title>vihav | console</title>{% endblock title %}
+{% block head %}<h4>Console | Vihav Priviledge</h4>{% endblock head %}
 {% block content %}
 
-{% include 'referral/nav.html' %}
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
+          <div class="row">
 
-{% for i in users %}
-{% if i.profile.is_client == False %}
-<ul>
-    <li>{{ i }}</li>
-</ul>
-{% endif %}
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Account Requests</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    
+                    <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                          <tr class="table-secondary">
+                            <th>Time</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>relation</th>
+                          </tr>
+{% for i in acc_req|slice:":5" %}
+                          <tr class="{{ i.alert }}">
+                            <td>{{ i.date_posted|timesince }} ago</td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.number }}</td>
+                            <td>{{ i.user.email }}</td>
+                            <td>{{ i.city }}</td>
+                            <td>{{ i.i_am }}</td>
+                            <td>                  
+			                  <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
+			                    <i class="fas fa-check"></i>
+			                  </a>
+
+			                </td>
+			                <td>
+			                  <a href="{% url 'delete' i.id %}" class="btn btn-danger btn-sm btn-circle">
+			                    <i class="fas fa-trash"></i>
+			                  </a>			                	
+			                </td>
+                            </tr>
 {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                    <a href="{% url 'all_req' %}">All requests &rarr;</a>
 
-{% endblock content %}
+                </div>
+              </div>
+            </div>
+          </div>
 
+
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Referrals</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    
+                    <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                          <tr class="table-secondary">
+                            <th>Time</th>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Reference</th>
+                            <th>Add notes</th>
+                          </tr>
+{% for i in ref_req|slice:":5" %}
+                          <tr class="{{ i.alert }}">
+                            <td>{{ i.date_posted|timesince }} ago</td>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.contact_number }}</td>
+                            <td>{{ i.email }}</td>
+                            <td>{{ i.city }}</td>
+                            <td>{{ i.reference }}</td>
+                            <td>
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Add notes" aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-plus fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>                            	
+                            </td>
+                            <td>                  
+			                  <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
+			                    <i class="fas fa-check"></i>
+			                  </a>
+
+			                </td>
+			                <td>
+			                  <a href="{% url 'delete' i.id %}" class="btn btn-danger btn-sm btn-circle">
+			                    <i class="fas fa-trash"></i>
+			                  </a>			                	
+			                </td>
+                            </tr>
+{% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                    <a href="{% url 'all_req' %}">All requests &rarr;</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+<div class="col-xl-6 col-md-6 mb-6">
+
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Add New Referral</h6>
+                    </div>
+		<div class="card-body" id="bankform">  
+		    <form class="user" method="POST">
+		            {% csrf_token %}
+		            <fieldset class="form-group">
+		            {{ r_form|crispy }}
+		            </fieldset>
+		            <div class="form-group">
+		            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Add</button>
+		</div>
+        </form>
+</div></div>
+</div>
+
+
+</div>
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+{% endblock %}

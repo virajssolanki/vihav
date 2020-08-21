@@ -25,7 +25,7 @@ class Referrals(models.Model):
 	name = models.CharField(max_length=50, blank=False, default='')
 	contact_number = models.CharField(max_length=10, blank=False, default='')
 	email = models.EmailField(blank=True)
-	location = models.CharField(max_length=100, blank=True)
+	city = models.CharField(max_length=100, blank=True)
 	date_posted = models.DateTimeField(default=timezone.now)
 	amount = models.FloatField(blank=True, default=0)
 	status = models.CharField(max_length=30, default='pending', choices=STATUS_CHOICES)

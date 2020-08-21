@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser
@@ -47,11 +48,18 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+IAM_CHOICES = (
+    ('agent','agnet'),
+    ('vihav\'s client', 'vihav\'s client'),
+)
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(default=timezone.now)
     name = models.CharField(max_length=100, blank=True)
     number = models.CharField(max_length=10, blank=True)
     city = models.CharField(max_length=40, blank=True)
+    i_am = models.CharField(max_length=40, blank=True, choices=IAM_CHOICES)
     verified = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)
 
@@ -63,8 +71,10 @@ ACC_TYPE_CHOICES = (
     ('current','current'),
     ('saving', 'saving'),
 )
+
 class Bank(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_posted = models.DateTimeField(default=timezone.now)
     account_holder_name = models.CharField(max_length=100, default="")
     bank_name = models.CharField(max_length=100, default="")
     branch = models.CharField(max_length=100, default="")
