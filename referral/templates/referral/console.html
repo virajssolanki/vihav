@@ -60,7 +60,6 @@
                 </div>
               </div>
             </div>
-          </div>
 
 
 
@@ -84,17 +83,15 @@
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
-                            <th>City</th>
                             <th>Reference</th>
                             <th>Add notes</th>
                           </tr>
 {% for i in ref_req|slice:":5" %}
-                          <tr class="{{ i.alert }}">
+                          <tr class="table-{{ i.alert }}">
                             <td>{{ i.date_posted|timesince }} ago</td>
                             <td>{{ i.name }}</td>
                             <td>{{ i.contact_number }}</td>
                             <td>{{ i.email }}</td>
-                            <td>{{ i.city }}</td>
                             <td>{{ i.reference }}</td>
                             <td>
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -123,36 +120,34 @@
 {% endfor %}
                         </tbody>
                       </table>
-                    </div>
-                    <a href="{% url 'all_req' %}">All requests &rarr;</a>
+                    </div><br>
+                    <a href="{% url 'all_ref' %}">All referrals &rarr;</a>
 
                 </div>
               </div>
             </div>
           </div>
 
-<div class="col-xl-6 col-md-6 mb-6">
+        <div class="col-xl-6 col-md-6 mb-6">
 
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
                       <h6 class="m-0 font-weight-bold text-primary">Add New Referral</h6>
                     </div>
-		<div class="card-body" id="bankform">  
-		    <form class="user" method="POST">
-		            {% csrf_token %}
-		            <fieldset class="form-group">
-		            {{ r_form|crispy }}
-		            </fieldset>
-		            <div class="form-group">
-		            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Add</button>
-		</div>
-        </form>
-</div></div>
+					<div class="card-body" id="bankform">  
+					    <form class="user" method="POST">
+					            {% csrf_token %}
+					            <fieldset class="form-group">
+					            {{ r_form|crispy }}
+					            </fieldset>
+					            <div class="form-group">
+					            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Add</button>
+						</div>
+				        </form>
+			        </div>
+      			   </div>
+        </div>
 </div>
-
-
-</div>
-
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -166,6 +161,6 @@
     </div>
     <!-- End of Content Wrapper -->
 
-  </div>
+  
   <!-- End of Page Wrapper -->
 {% endblock %}

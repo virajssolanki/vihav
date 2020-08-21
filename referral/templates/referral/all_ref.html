@@ -25,17 +25,15 @@
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
-                            <th>City</th>
                             <th>Reference</th>
                             <th>Add notes</th>
                           </tr>
 {% for i in ref_req %}
-                          <tr class="{{ i.alert }}">
+                          <tr class="table-{{ i.alert }}">
                             <td>{{ i.date_posted|timesince }} ago</td>
                             <td>{{ i.name }}</td>
                             <td>{{ i.contact_number }}</td>
                             <td>{{ i.email }}</td>
-                            <td>{{ i.city }}</td>
                             <td>{{ i.reference }}</td>
                             <td>
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
