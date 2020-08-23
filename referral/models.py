@@ -6,6 +6,7 @@ from django.urls import reverse
 
 STATUS_CHOICES = (
     ('success','success'),
+    ('not reviewed','not reviewed'),
     ('pending', 'pending'),
     ('fail','fail'),
 )
@@ -28,7 +29,7 @@ class Referrals(models.Model):
 	city = models.CharField(max_length=100, blank=True)
 	date_posted = models.DateTimeField(default=timezone.now)
 	amount = models.FloatField(blank=True, default=0)
-	status = models.CharField(max_length=30, default='pending', choices=STATUS_CHOICES)
+	status = models.CharField(max_length=30, default='not reviewed', choices=STATUS_CHOICES)
 	alert = models.CharField(max_length=30, default='warning', choices=ALERT_CHOICES, blank=True)
 	note = models.TextField(max_length=350, blank=True)
 	reference = models.ForeignKey(User, on_delete=models.CASCADE)

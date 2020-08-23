@@ -6,6 +6,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from django.core.mail import send_mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+SENDGRID_API_KEY='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'
 
 def signup(request):
 	user=request.user
@@ -24,8 +28,14 @@ def signup(request):
 				Profile.objects.create(user=user, name=name, city=city, number=number, i_am=i_am)
 				login(request, user)
 				messages.success(request, f'ACCOUNT CREATED FOR {email}!')
-				send_mail('subject', 'body of the message', 'virazssolanki@gmail.com', [email])
-				return redirect('dashboard', email=email)
+				message = Mail(
+					from_email='vihavgroup.dm@gmail.com',
+					to_emails=email,
+					subject='Sending with Twilio SendGrid is Fun',
+					html_content='<h1>Welcome to Vihav Privilege</h1><strong>and easy to do anywhere, even with Python</strong>')
+				sg = SendGridAPIClient(SENDGRID_API_KEY)
+				response = sg.send(message)
+				return redirect('dashboard', email=email)				
 		else:
 			form = UserRegisterForm()
 		context = locals()

@@ -118,6 +118,10 @@ def accept(request, pk):
 		acc.is_client = True
 		acc.save()
 		messages.success(request, f'Account created')
+		try:
+			send_mail('Hey, Your account is approved', 'Hey, Your account is approved', 'vihavgroup.dm@gmail.com', [email])
+		except:
+			pass
 		return redirect('console')
 	else:
 		return render(request, 'referral/home.html')

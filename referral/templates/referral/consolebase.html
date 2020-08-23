@@ -26,6 +26,17 @@
 
   <!-- Custom styles for this template-->
   <link rel="stylesheet" type="text/css" href="{% static 'referral/css/sb-admin-2.css' %}">
+<!-- Hotjar Tracking Code for https://vihavpriviledge.herokuapp.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1956923,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
 
 </head>
 
@@ -145,6 +156,26 @@
       </main>
 {% block content %}{% endblock content%} 
 
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'referral/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'referral/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

@@ -60,6 +60,7 @@
                 </div>
               </div>
             </div>
+          </div>
 
 
 
@@ -75,17 +76,21 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     
-                    <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
+                    <div class="table-responsive text-nowrap">
+                    <table class="table w-auto table-striped table-bordered">
                         <tbody>
+                          <thead>
                           <tr class="table-secondary">
                             <th>Time</th>
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
                             <th>Reference</th>
-                            <th>Add notes</th>
+                            <th style="padding: 1rem 5rem; width: 100rem;">Add notes</th>
+                            <th style=""  >Update Status</th>
+                            <th>Update amount</th>
                           </tr>
+                        </thead>
 {% for i in ref_req|slice:":5" %}
                           <tr class="table-{{ i.alert }}">
                             <td>{{ i.date_posted|timesince }} ago</td>
@@ -94,28 +99,41 @@
                             <td>{{ i.email }}</td>
                             <td>{{ i.reference }}</td>
                             <td>
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+  <form class="d-none d-sm-inline-block" method="POST">
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_input }}">
+
+      <fieldset class="form-group">
+        <div class="input-group">
+           <input type="text" class="form-control bg-light border-0 small" placeholder="Add notes" aria-label="Search" aria-describedby="basic-addon2">
+        </div>                           	
+                            </td>
+                            <td>
+  <div class="form-group">
+    <select class="form-control bg-light" id="exampleFormControlSelect1">
+      <option></option>
+      <option>success</option>
+      <option>not reviewed</option>
+      <option>pending</option>
+      <option>fail</option>
+    </select>
+  </div>
+
+                            </td>
+                            <td>
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Add notes" aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="amount" aria-label="Search" aria-describedby="basic-addon2">
+            </div>   
+                            </td>
+       </fieldset>
+                            <td>
+               <div class="input-group-append">
+                <button class="btn btn-success" type="submit">
                   <i class="fas fa-plus fa-sm"></i>
                 </button>
-              </div>
-            </div>
-          </form>                            	
+              </div>                             
                             </td>
-                            <td>                  
-			                  <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
-			                    <i class="fas fa-check"></i>
-			                  </a>
-
-			                </td>
-			                <td>
-			                  <a href="{% url 'delete' i.id %}" class="btn btn-danger btn-sm btn-circle">
-			                    <i class="fas fa-trash"></i>
-			                  </a>			                	
-			                </td>
+</form>
                             </tr>
 {% endfor %}
                         </tbody>
@@ -128,6 +146,7 @@
             </div>
           </div>
 
+<div class="row">
         <div class="col-xl-6 col-md-6 mb-6">
 
                   <div class="card shadow mb-4">
@@ -146,6 +165,7 @@
 				        </form>
 			        </div>
       			   </div>
+        </div>
         </div>
 </div>
       <!-- Footer -->

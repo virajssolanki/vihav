@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from referral.models import Referrals
 
 IAM_CHOICES = (
-    ('agent','agnet'),
+    ('agent','agent'),
     ('vihav\'s client', 'vihav\'s client'),
 )
 
