@@ -5,6 +5,9 @@ django-crispy-forms==1.9.2
 django-heroku==0.3.1
 gunicorn==20.0.4
 psycopg2==2.8.5
+python-http-client==3.3.0
 pytz==2020.1
+sendgrid==6.4.6
 sqlparse==0.3.1
+starkbank-ecdsa==1.0.0
 whitenoise==5.2.0
