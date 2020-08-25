@@ -1,5 +1,6 @@
 {% extends "referral/consolebase.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block title %}<title>console | all_requests</title>{% endblock title %}
 {% block head %}<h4>Console | all account creation request </h4>{% endblock head %}
 
@@ -8,6 +9,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+{% if acc_req|length != 0 %}
           <div class="row">
 
             <!-- Area Chart -->
@@ -21,9 +23,9 @@
                 <div class="card-body">
                     
                     <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-striped table-bordered">
                         <tbody>
-                          <tr>
+                          <tr class="table-secondary">
                             <th>Time</th>
                             <th>Name</th>
                             <th>Contact</th>
@@ -50,22 +52,44 @@
                           <i class="fas fa-trash"></i>
                         </a>                        
                       </td>
-                          </tr>
+                            </tr>
 {% endfor %}
                         </tbody>
                       </table>
                     </div>
+                    <a href="{% url 'all_req' %}">All requests &rarr;</a>
+
+                </div>
 
                 </div>
               </div>
             </div>
+{% else %}
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Account Requests</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="table-responsive">
+                            <center><img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="{% static 'referral/img/undraw_done_checking_ty9a.svg' %}" alt="">
+                            <h5>All account requests are reviewed</h5></center>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+{% endif %}
+        </div>
+
 
 
         </div>
-        <!-- /.container-fluid -->
-
-      </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->

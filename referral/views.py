@@ -3,8 +3,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import User, Bank, Profile
 from .models import Referrals, Withdraw
-from users.forms import BankUpdateForm, NewReferral, NewAdminReferral
-# Create your views here.
+from users.forms import BankUpdateForm, NewReferral, NewAdminReferral, UpdateReferral, UpdateWithdraw
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+SENDGRID_API_KEY='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'
+
 def home(request):
 	user=request.user
 	if user.is_authenticated:
@@ -13,7 +17,7 @@ def home(request):
 
 @login_required
 def about(request):
-	return render(request, 'referral/about.html')
+	return render(request, 'referral/newabout.html')
 
 @login_required
 def dashboard(request, email):
@@ -58,7 +62,7 @@ def dashboard(request, email):
 	return render(request, 'referral/dashboard.html', context)
 
 @login_required
-def console(request):
+def console(request, rpk=None, wpk=None):
 	if request.user.is_superuser:
 		user = request.user
 		if request.method == 'POST':
@@ -71,9 +75,47 @@ def console(request):
 				referral.reference = ref
 				referral.save()
 				messages.success(request, f'Referral {name} Added with reference {ref_email}')
+				#message = Mail(
+					#from_email='vihavgroup.dm@gmail.com',
+					#to_emails=ref_email,
+					#subject=f'{name} book property at vihav with your reference',
+					#html_content='<h1>Welcome to Vihav Privilege</h1><strong>and easy to do anywhere, even with Python</strong>')
+				#sg = SendGridAPIClient(SENDGRID_API_KEY)
+				response = sg.send(message)
+		if rpk != None and wpk==None:
+			ref = Referrals.objects.get(id=rpk)
+			if request.method == 'POST':
+				urform = UpdateReferral(request.POST, instance=ref)
+				if urform.is_valid:
+					ref = urform.save(commit=False)
+					status  = urform.cleaned_data.get('status')
+					lert = alert(status)
+					ref.alert = lert
+					ref.save()
+					messages.success(request, f'REFERRAL UPDATED SUCCESSFULLY')
+					return redirect('console')
+			else:
+				urform = UpdateReferral(instance=ref)
+
+		if wpk != None and rpk==None:
+			w = Withdraw.objects.get(id=wpk)
+			if request.method == 'POST':
+				wd_form = UpdateWithdraw(request.POST, instance=w)
+				if wd_form.is_valid:
+					w = wd_form.save(commit=False)
+					status  = wd_form.cleaned_data.get('status')
+					lert = alert(status)
+					w.alert = lert
+					w.save()
+					messages.success(request, f'Withdraw request updated')
+					return redirect('console')
+			else:
+				wd_form = UpdateWithdraw(instance=w)
+
 		r_form = NewAdminReferral()
 		acc_req = Profile.objects.filter(verified=False).order_by('-date_posted')
 		ref_req = Referrals.objects.order_by('-date_posted')
+		wd_req = Withdraw.objects.order_by('-date_posted')
 		context = locals()
 		return render(request, 'referral/console.html', context)
 	else:
@@ -117,11 +159,14 @@ def accept(request, pk):
 		acc.verified = True
 		acc.is_client = True
 		acc.save()
+		email = acc.user.email
 		messages.success(request, f'Account created')
-		try:
-			send_mail('Hey, Your account is approved', 'Hey, Your account is approved', 'vihavgroup.dm@gmail.com', [email])
-		except:
-			pass
+		#message = Mail(
+		#	from_email='vihavgroup.dm@gmail.com',
+		#	to_emails=email)
+		#message.template_id = 'd-9cbebf3c4241460fbcac2b6c4d378d4b'
+		#sg = SendGridAPIClient(SENDGRID_API_KEY)
+		#response = sg.send(message)
 		return redirect('console')
 	else:
 		return render(request, 'referral/home.html')
@@ -137,6 +182,38 @@ def delete(request, pk):
 		return redirect('console')
 	else:
 		return render(request, 'referral/home.html')
+
+def alert(status):
+	if status == 'success':
+		alert = 'success'
+	elif status == 'pending':
+		alert = 'warning'
+	elif status == 'fail':
+		alert = 'danger'
+	return alert
+
+@login_required
+def edit_ref(request, pk):
+	if request.user.is_superuser:
+		ref = Referrals.objects.get(id=pk)
+		if request.method == 'POST':
+			urform = UpdateReferral(request.POST, instance=ref)
+			if urform.is_valid:
+				ref = urform.save(commit=False)
+				status  = urform.cleaned_data.get('status')
+				lert = alert(status)
+				ref.alert = lert
+				ref.save()
+				messages.success(request, f'REFERRAL UPDATED SUCCESSFULLY')
+				return redirect('console')
+		else:
+			urform = UpdateReferral(instance=ref)
+		context = locals()
+		return render(request, 'referral/console.html', context)
+	else:
+		return render(request, 'referral/home.html')
+
+
 
 @login_required
 def withdraw(request):

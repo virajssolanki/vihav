@@ -31,7 +31,7 @@ class Referrals(models.Model):
 	amount = models.FloatField(blank=True, default=0)
 	status = models.CharField(max_length=30, default='not reviewed', choices=STATUS_CHOICES)
 	alert = models.CharField(max_length=30, default='warning', choices=ALERT_CHOICES, blank=True)
-	note = models.TextField(max_length=350, blank=True)
+	note = models.TextField(max_length=150, blank=True)
 	reference = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def __str__(self):
@@ -40,7 +40,7 @@ class Referrals(models.Model):
 class Withdraw(models.Model):
 	date_posted = models.DateTimeField(default=timezone.now)
 	amount = models.IntegerField(blank=True, default=0)
-	note = models.TextField(max_length=350, default='---', blank=True)
-	status = models.CharField(max_length=30, default='pending', choices=STATUS_CHOICES)
+	note = models.TextField(max_length=150, default='---', blank=True)
+	status = models.CharField(max_length=30, default='not reviewed', choices=STATUS_CHOICES)
 	alert = models.CharField(max_length=30, default='table-warning', choices=W_ALERT_CHOICES, blank=True)
 	holder = models.ForeignKey(User, on_delete=models.CASCADE)

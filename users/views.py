@@ -30,9 +30,8 @@ def signup(request):
 				messages.success(request, f'ACCOUNT CREATED FOR {email}!')
 				message = Mail(
 					from_email='vihavgroup.dm@gmail.com',
-					to_emails=email,
-					subject='Sending with Twilio SendGrid is Fun',
-					html_content='<h1>Welcome to Vihav Privilege</h1><strong>and easy to do anywhere, even with Python</strong>')
+					to_emails=email)
+				message.template_id = 'd-581e4afb46eb4ee08bfa2eb11128474b'
 				sg = SendGridAPIClient(SENDGRID_API_KEY)
 				response = sg.send(message)
 				return redirect('dashboard', email=email)				
