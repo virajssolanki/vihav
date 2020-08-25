@@ -64,15 +64,16 @@ function SwapDivsWithClick(div1,div2)
 
 {% if user.profile.verified == False %}
 <div id="content-wrapper" class=".mh-100 m-5 d-flex flex-column">
-                        <div class="card-body">
-                          <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'referral/img/undraw_working_remotely_jh40.svg' %}" alt="">
-                          </div>
-                          <center><h3>We are reviewing your profile.<br> It may take upto 3 working days. <br> You will be notified through email.</h3>
-                            Urgent ? <a target="_blank" rel="nofollow" href="#">Call Us</a> <br><br>
-                            <a href="{% url 'logout' %}">Log out</a>
-                            </center>
-                        </div>
+      <div class="card-body">
+          <div class="text-center">
+             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'referral/img/undraw_working_remotely_jh40.svg' %}" alt="">
+          </div>
+          <center><h2><b>Thank you for your interest in Vihav Privilege</b></h2>
+            <h5 class="p-4">
+Your Vihav Privilege account is under review. Our support team will process your application soon and get in touch with you if needed. You will receive a confirmation email once verification complete.</h5>
+
+          <a href="{% url 'logout' %}">Log out &rarr;</a>
+
 </div>
 
 {% elif user.profile.is_client == False %} 

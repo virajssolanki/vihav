@@ -13,9 +13,7 @@ def home(request):
 	user=request.user
 	if user.is_authenticated:
 		return redirect('dashboard', email=request.user.email)
-	else:
-		return redirect('signup')
-	return render(request, 'referral/home.html')
+	return render(request, 'referral/newhome.html')
 
 @login_required
 def about(request):

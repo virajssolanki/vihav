@@ -49,16 +49,21 @@ class User(AbstractUser):
         return self.email
 
 IAM_CHOICES = (
-    ('agent','agnet'),
-    ('vihav\'s client', 'vihav\'s client'),
+    ('Vihav\'s client', 'Vihav\'s client'),
+    ('Vihav\'s employee', 'Vihav\'s employee'),
+    ('Vendor or Suppliers', 'Vendor or Supplier'),
+    ('Channel partner', 'Channel partner'),
+    ('Channel partner', 'Channel partner'),
+    ('Other', 'Other'),
 )
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
-    name = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
     number = models.CharField(max_length=10, blank=True)
-    city = models.CharField(max_length=40, blank=True)
+    city = models.CharField(max_length=100, blank=True)
     i_am = models.CharField(max_length=40, blank=True, choices=IAM_CHOICES)
     verified = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)

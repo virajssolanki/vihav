@@ -9916,8 +9916,8 @@ a:focus {
 }
 
 .bg-gradient-light {
+  background: url("https://i.ibb.co/TKqj6pH/Bg-1.jpg");
   background-color: #f8f9fc;
-  background-image: linear-gradient(180deg, #f8f9fc 10%, #c2cbe5 100%);
   background-size: cover;
 }
 
@@ -10809,13 +10809,13 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("http://vihav.com/excelus/gallery_1.jpg");
+  background: url("https://i.ibb.co/7g1pYF3/signin.jpg");
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 }
 
 .bg-register-image {
-  background: url("http://vihav.com/excelus/gallery_2.jpg");
+  background: url("https://i.ibb.co/wz6kGRv/signup.jpg");
   background-position: center;
   background-size: cover;
 }

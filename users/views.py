@@ -21,19 +21,20 @@ def signup(request):
 				email  = form.cleaned_data.get('email')
 				raw_password = form.cleaned_data.get('password1')
 				user = authenticate(email=email, password=raw_password)
-				name  = form.cleaned_data.get('name')
-				city  = form.cleaned_data.get('city')
-				number  = form.cleaned_data.get('number')
+				name  = form.cleaned_data.get('first_name')
+				last_name  = form.cleaned_data.get('last_name')
+				city  = form.cleaned_data.get('adress')
+				number  = form.cleaned_data.get('contact_number')
 				i_am  = form.cleaned_data.get('i_am')
-				Profile.objects.create(user=user, name=name, city=city, number=number, i_am=i_am)
+				Profile.objects.create(user=user, name=name, last_name=last_name, city=city, number=number, i_am=i_am)
 				login(request, user)
 				messages.success(request, f'ACCOUNT CREATED FOR {email}!')
-				message = Mail(
-					from_email='vihavgroup.dm@gmail.com',
-					to_emails=email)
-				message.template_id = 'd-581e4afb46eb4ee08bfa2eb11128474b'
-				sg = SendGridAPIClient(SENDGRID_API_KEY)
-				response = sg.send(message)
+				#message = Mail(
+				#	from_email='vihavgroup.dm@gmail.com',
+				#	to_emails=email)
+				#message.template_id = 'd-581e4afb46eb4ee08bfa2eb11128474b'
+				#sg = SendGridAPIClient(SENDGRID_API_KEY)
+				#response = sg.send(message)
 				return redirect('dashboard', email=email)				
 		else:
 			form = UserRegisterForm()

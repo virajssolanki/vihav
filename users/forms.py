@@ -2,22 +2,29 @@ from django import forms
 from .models import User, Profile, Bank
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from referral.models import Referrals, Withdraw
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 IAM_CHOICES = (
-    ('agent','agent'),
-    ('vihav\'s client', 'vihav\'s client'),
+    ('Vihav\'s client', 'Vihav\'s client'),
+    ('Vihav\'s employee', 'Vihav\'s employee'),
+    ('Vendor or Suppliers', 'Vendor or Supplier'),
+    ('Channel partner', 'Channel partner'),
+    ('Channel partner', 'Channel partner'),
+    ('Other', 'Other'),
 )
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField(widget=forms.TextInput(attrs={'class': "form-control"}))
-	name = forms.CharField(required=True)
-	city = forms.CharField(required=True)
-	number = forms.CharField(required=True)
+	first_name = forms.CharField(required=True)
+	last_name = forms.CharField(required=True)
+	adress = forms.CharField(required=True)
+	contact_number = forms.CharField(required=True)
 	i_am = forms.ChoiceField(required=True, choices=IAM_CHOICES)
-	
+
 	class Meta:
 		model = User
-		fields = ['name', 'city', 'email', 'number', 'i_am', 'password1', 'password2']
+		fields = ['first_name', 'last_name', 'contact_number', 'email', 'adress',  'i_am', 'password1', 'password2']
 		widgets = {
 			'username' : forms.TextInput(attrs = {'placeholder': 'enter your enail adress'}),
 			}
