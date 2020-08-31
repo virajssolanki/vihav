@@ -62,7 +62,8 @@ function SwapDivsWithClick(div1,div2)
 
 {% if user.profile.verified == False %}
 <div id="content-wrapper" class=".mh-100 m-5 d-flex flex-column">
-      <div class="card-body">
+  <div class="container d-flex h-100">
+      <div class="card-body align-items-center h-100">
           <div class="text-center">
              <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'referral/img/undraw_working_remotely_jh40.svg' %}" alt="">
           </div>
@@ -72,6 +73,7 @@ Your One Vihav account is under review. Our support team will process your appli
 
           <a href="{% url 'logout' %}">Log out &rarr;</a>
 
+</div>
 </div>
 
 {% elif user.profile.is_client == False %} 
@@ -392,6 +394,7 @@ Your One Vihav account is under review. Our support team will process your appli
             <!-- End of Content Wrapper -->
 
     </div>
+   </div>
   <!-- End of Page Wrapper -->
 
   <!-- Logout Modal-->

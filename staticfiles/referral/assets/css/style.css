@@ -790,3 +790,7 @@ footer .copy {
     line-height: 24px;
   }
 }
+
+#hidden-select {
+  display: none;
+}

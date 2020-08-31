@@ -72,6 +72,11 @@
                     <label for="am"> I am*</label>
                     {{ form.i_am }}
                   </div>
+                  <div class="register-form-group" id="hidden-select">
+                    <label for="sites"> Please select site</label>
+                    {{ form.sites }}
+                  </div>
+
                   <div class="register-form-group">
                     <label for="password"> Password*</label>
                     {{ form.password1 }}
@@ -102,4 +107,10 @@
       <!-- flex box end -->
     </section>
   </body>
+  <script>
+    document.getElementById("id_i_am").addEventListener("change", function () {
+      var style = this.value == "Vihav's client" ? "block" : "none";
+      document.getElementById("hidden-select").style.display = style;
+    });
+  </script>
 </html>

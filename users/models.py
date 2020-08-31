@@ -53,8 +53,21 @@ IAM_CHOICES = (
     ('Vihav\'s employee', 'Vihav\'s employee'),
     ('Vendor or Suppliers', 'Vendor or Supplier'),
     ('Channel partner', 'Channel partner'),
-    ('Channel partner', 'Channel partner'),
     ('Other', 'Other'),
+)
+
+SITES = (
+    ('KEYSTONE SKYVILLAS', 'KEYSTONE SKYVILLAS'),
+    ('WEALTH SQUARE', 'WEALTH SQUARE'),
+    ('VIHAV BUSINESS SQUARE', 'VIHAV BUSINESS SQUARE'),
+    ('VIHAV SUPREMUS', 'VIHAV SUPREMUS'),
+    ('VIHAV SKYONE', 'VIHAV SKYONE'),
+    ('VIHAV TRADE CENTRE', 'VIHAV TRADE CENTRE'),
+    ('VIHAV KEYSTONE MANSIONS', 'VIHAV KEYSTONE MANSIONS'),
+    ('VIHAV KEYSTONE MANSIONS-2', 'VIHAV KEYSTONE MANSIONS-2'),
+    ('VIHAV ELITE SQUARE', 'VIHAV ELITE SQUARE'),
+    ('VIAHV EXCELUS', 'VIAHV EXCELUS'),
+    ('VIHAV ENSIGN', 'VIHAV ENSIGN'),
 )
 
 class Profile(models.Model):
@@ -65,6 +78,7 @@ class Profile(models.Model):
     number = models.CharField(max_length=10, blank=True)
     city = models.CharField(max_length=100, blank=True)
     i_am = models.CharField(max_length=40, blank=True, choices=IAM_CHOICES)
+    site = models.CharField(max_length=100, blank=True, choices=SITES)
     verified = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)
 

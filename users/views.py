@@ -26,7 +26,8 @@ def signup(request):
 				city  = form.cleaned_data.get('adress')
 				number  = form.cleaned_data.get('contact_number')
 				i_am  = form.cleaned_data.get('i_am')
-				Profile.objects.create(user=user, name=name, last_name=last_name, city=city, number=number, i_am=i_am)
+				site  = form.cleaned_data.get('sites')
+				Profile.objects.create(user=user, name=name, last_name=last_name, city=city, number=number, i_am=i_am, site=site)
 				login(request, user)
 				messages.success(request, f'ACCOUNT CREATED FOR {email}!')
 				#message = Mail(

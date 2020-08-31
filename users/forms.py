@@ -13,6 +13,20 @@ IAM_CHOICES = (
     ('Other', 'Other'),
 )
 
+SITES = (
+    ('KEYSTONE SKYVILLAS', 'KEYSTONE SKYVILLAS'),
+    ('WEALTH SQUARE', 'WEALTH SQUARE'),
+    ('VIHAV BUSINESS SQUARE', 'VIHAV BUSINESS SQUARE'),
+    ('VIHAV SUPREMUS', 'VIHAV SUPREMUS'),
+    ('VIHAV SKYONE', 'VIHAV SKYONE'),
+    ('VIHAV TRADE CENTRE', 'VIHAV TRADE CENTRE'),
+    ('VIHAV KEYSTONE MANSIONS', 'VIHAV KEYSTONE MANSIONS'),
+    ('VIHAV KEYSTONE MANSIONS-2', 'VIHAV KEYSTONE MANSIONS-2'),
+    ('VIHAV ELITE SQUARE', 'VIHAV ELITE SQUARE'),
+    ('VIAHV EXCELUS', 'VIAHV EXCELUS'),
+    ('VIHAV ENSIGN', 'VIHAV ENSIGN'),
+)
+
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField(widget=forms.TextInput(attrs={'class': "form-control"}))
 	first_name = forms.CharField(widget= forms.TextInput(attrs={'class':'some_class','id':'some_id'}))
@@ -20,10 +34,11 @@ class UserRegisterForm(UserCreationForm):
 	adress = forms.CharField(required=True)
 	contact_number = forms.CharField(required=True)
 	i_am = forms.ChoiceField(required=True, choices=IAM_CHOICES)
+	sites = forms.ChoiceField(required=False, choices=SITES, widget= forms.Select(attrs={'id':'select', 'class':'select-field'}))
 
 	class Meta:
 		model = User
-		fields = ['first_name', 'last_name', 'contact_number', 'email', 'adress',  'i_am', 'password1', 'password2']
+		fields = ['first_name', 'last_name', 'contact_number', 'email', 'adress',  'i_am', 'sites', 'password1', 'password2']
 		widgets = {
 			'email' : forms.TextInput(attrs = {'placeholder': 'enter your enail adress'}),
 			}
