@@ -74,24 +74,12 @@
                   </div>
                   <div class="register-form-group">
                     <label for="password"> Password*</label>
-                    <input
-                      type="password"
-                      name="email"
-                      class="form-field"
-                      id="password"
-                      required
-                    />
+                    {{ form.password1 }}
                   </div>
 
                   <div class="register-form-group">
                     <label for="Cpassword"> Password confirmation*</label>
-                    <input
-                      type="password"
-                      name="passwordc"
-                      class="form-field"
-                      id="Cpassword"
-                      required
-                    />
+                    {{ form.password2 }}
                     <small
                       >Enter the same password as before, for
                       verification.</small
