@@ -10,13 +10,12 @@ IAM_CHOICES = (
     ('Vihav\'s employee', 'Vihav\'s employee'),
     ('Vendor or Suppliers', 'Vendor or Supplier'),
     ('Channel partner', 'Channel partner'),
-    ('Channel partner', 'Channel partner'),
     ('Other', 'Other'),
 )
 
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField(widget=forms.TextInput(attrs={'class': "form-control"}))
-	first_name = forms.CharField(required=True)
+	first_name = forms.CharField(widget= forms.TextInput(attrs={'class':'some_class','id':'some_id'}))
 	last_name = forms.CharField(required=True)
 	adress = forms.CharField(required=True)
 	contact_number = forms.CharField(required=True)
@@ -26,7 +25,7 @@ class UserRegisterForm(UserCreationForm):
 		model = User
 		fields = ['first_name', 'last_name', 'contact_number', 'email', 'adress',  'i_am', 'password1', 'password2']
 		widgets = {
-			'username' : forms.TextInput(attrs = {'placeholder': 'enter your enail adress'}),
+			'email' : forms.TextInput(attrs = {'placeholder': 'enter your enail adress'}),
 			}
 
 class UserUpdateForm(forms.ModelForm):

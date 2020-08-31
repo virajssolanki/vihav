@@ -13,7 +13,7 @@ def home(request):
 	user=request.user
 	if user.is_authenticated:
 		return redirect('dashboard', email=request.user.email)
-	return render(request, 'referral/newhome.html')
+	return render(request, 'referral/home.html')
 
 @login_required
 def about(request):

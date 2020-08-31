@@ -1,110 +1,64 @@
-{% load crispy_forms_tags %}
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Vihav</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'referral/assets/img/favicon.ico' %}">
+    <title>One Vihav</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'referral/assets\image/favicon.ico' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'referral/assets/css/all.min.css' %}">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="referral/assets/css/all.min.css">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="{% static 'referral/assets/css/bootstrap.min.css' %}">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{% static 'referral/assets/css/style.css' %}">
     
     <link rel="stylesheet" type="text/css" href="{% static 'referral/assets/css/style.css' %}">
 
 </head>
-<body>
-   
-    <!-- header Section start 
-    <header>
-        <nav class="navnew mx-5 navbar navbar-expand-lg">
-          <div class="container">
-            <a class="navbar-brand brand_logo" href="#">
-              <img src="{% static 'referral/assets/img/logo.png' %}" alt="logo">
-            </a>
+  <body>
+    <section class="hero-screen">
+      <div class="hero-container">
+        <div class="hero-row">
+          <div class="hero-col hero-col-1">
+            <div class="hero-content">
+              <div class="image-for-mobile">
+                <img
+                  src="{% static 'referral/assets/image/hero-logo.png' %}"
+                  alt="hero logo"
+                  class="hero-logo-mob"
+                />
+              </div>
+              <h1>
+                REFER <br />WHOM YOU<br />
+                PREFER
+              </h1>
+              <div class="line"></div>
+              <p class="hero-paragraph">
+                A rewarding referal program <br />exclusively for Vihav Associates.
+              </p>
+              <p class="hero-paragraph">
+                Refer our projects to your circle and earn <br />attractive
+                reward points.
+              </p>
+              <div class="hero-button-box">
+                <a href="{% url 'signup' %}" class="hero-button">JOIN NOW</a>
+                <a href="{% url 'login' %}" class="hero-button">LOG IN</a>
+              </div>
+            </div>
           </div>
-        </nav>
-    </header>
-     header Section end -->
-   
-    <!-- banner Section start -->
-    <section id="banner">
-        <div class="container">
-           <div class="bnnr_content">
-               <img src="{% static 'referral/assets/img/logot.png' %}" alt="logo">
-               <h1 class="title">Exclusive<br>Refer & Earn<br>Program</h1>
-               <h3 class="sub_title"><span>for vihav's associates</span></h3>
-                <ul class="join_sign d-flex">
-                    <li><a href="{% url 'signup' %}" class="vihav_btn">Join Now</a></li>
-                    <li><a href="{% url 'login' %}" class="vihav_btn2">Log In</a></li>
-                </ul>
-            <!-- stroke Text -->
-            <div class="stock-text1">
-                <h2>pillar of </h2>
-                <h2>pillar of </h2>
+          <div class="hero-col hero-col-2">
+            <div class="hero-image-box">
+              <img
+                src="{% static 'referral/assets/image/hero-logo.png' %}"
+                alt="logo"
+                class="hero-logo"
+              />
+              <img
+                src="{% static 'referral/assets/image/people-original.png' %}"
+                alt="people image"
+                class="hero-people"
+              />
             </div>
-            <div class="stock-text">
-                <h2>excellence</h2>
-                <h2>excellence</h2>
-            </div>
-
-           </div>
+          </div>
         </div>
+      </div>
     </section>
-    <!-- banner Section end -->
-   
-    <!-- reward Section start 
-    <section id="reward"  class="sec-pad">
-        <div class="container">
-           <div class="row">
-               <div class="col-12 text-center">
-                <div class="reward_content">
-                    <h3 class="slogan_txt">Help your Friend & Family to find their <br>
-                        dream Home with VIHAV & Earn</h3>
-                    <h2 class="title">
-                        Rewards
-                    </h2>
-                </div>
-               </div>
-               <div class="col-12 text-center">
-                   <div class="bottom px-5">
-                    <h3 class="brief">
-                        when your Friend book Property at Vihav’s <br>
-                        with your reference, You get 6% of amount direct to <br>
-                        your account.
-                       </h3>
-                   </div>
-               </div>
-           </div>
-
-        </div>
-    </section>
-     reward Section end -->
-
-
-
-<!-- footer section end -->
-    <!-- Script tage goes here -->
-    <script src="{% static 'referral/assets/js/jquery-3.5.1.slim.min.js' %}"></script>
-    <script src="{% static 'referral/assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'referral/assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'referral/assets/js/app.js' %}"></script>
-    <script>
-//     $('.panel-collapse').on('show.bs.collapse', function () {
-//     $(this).siblings('.panel-heading').addClass('active');
-//   });
-
-//   $('.panel-collapse').on('hide.bs.collapse', function () {
-//     $(this).siblings('.panel-heading').removeClass('active');
-//   });
-    </script>
-</body>
+  </body>
 </html>

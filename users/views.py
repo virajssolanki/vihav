@@ -30,7 +30,7 @@ def signup(request):
 				login(request, user)
 				messages.success(request, f'ACCOUNT CREATED FOR {email}!')
 				#message = Mail(
-				#	from_email='vihavgroup.dm@gmail.com',
+				#	from_email='one@vihav.com',
 				#	to_emails=email)
 				#message.template_id = 'd-581e4afb46eb4ee08bfa2eb11128474b'
 				#sg = SendGridAPIClient(SENDGRID_API_KEY)
