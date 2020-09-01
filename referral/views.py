@@ -6,8 +6,12 @@ from .models import Referrals, Withdraw
 from users.forms import BankUpdateForm, NewReferral, NewAdminReferral, UpdateReferral, UpdateWithdraw
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.http import HttpResponse
 
 SENDGRID_API_KEY='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'
+
+def index(request):
+	return HttpResponse('done')
 
 def home(request):
 	user=request.user

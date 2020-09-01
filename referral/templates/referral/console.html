@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block title %}<title>vihav | console</title>{% endblock title %}
-{% block head %}<h4>Console | Vihav Priviledge</h4>{% endblock head %}
+{% block head %}<h4>Console | One Vihav</h4>{% endblock head %}
 {% block content %}
 
         <!-- Begin Page Content -->
@@ -140,7 +140,8 @@
                             <th>Contact</th>
                             <th>Email</th>
                             <th>City</th>
-                            <th>relation</th>
+                            <th>Relation</th>
+                            <th>Site</th>
                           </tr>
 {% for i in acc_req|slice:":5" %}
                           <tr class="{{ i.alert }}">
@@ -150,6 +151,7 @@
                             <td>{{ i.user.email }}</td>
                             <td>{{ i.city }}</td>
                             <td>{{ i.i_am }}</td>
+                            <td>{{ i.site }}</td>
                             <td>                  
 			                  <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
 			                    <i class="fas fa-check"></i>
