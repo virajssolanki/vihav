@@ -81,10 +81,10 @@ class Profile(models.Model):
     site = models.CharField(max_length=100, blank=True, choices=SITES)
     verified = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)
+    reviewed_by = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f'{self.user.profile.name} Profile'
-
 
 ACC_TYPE_CHOICES = (
     ('current','current'),

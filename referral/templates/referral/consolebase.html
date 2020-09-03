@@ -53,22 +53,18 @@
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'console' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>CONSOLE</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'all_req' %}" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="{% url 'all_acc' %}" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-user"></i>
-          <span>Account requests</span>
+          <span>All Members</span>
         </a>
       </li>
 
@@ -76,9 +72,27 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'all_ref' %}" aria-expanded="true">
           <i class="fas fa-fw fa-user"></i>
-          <span>Referrals</span>
+          <span>All Referrals</span>
         </a>
       </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'all_req' %}" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Member Requests</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'all_wreq' %}" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Withdrawal Requests</span>
+        </a>
+      </li>
+
+
       
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

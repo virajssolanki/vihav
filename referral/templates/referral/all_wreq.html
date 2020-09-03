@@ -2,14 +2,15 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block title %}<title>console | all_requests</title>{% endblock title %}
-{% block head %}<h4>Console | All member request </h4>{% endblock head %}
+{% block head %}<h4>Console | All withdrawal request </h4>{% endblock head %}
 
 {% block content %}
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-{% if acc_req|length != 0 %}
+{% if wd_req %}
+
           <div class="row">
 
             <!-- Area Chart -->
@@ -17,7 +18,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Member Requests</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Withdraw Requests</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -27,38 +28,31 @@
                         <tbody>
                           <tr class="table-secondary">
                             <th>Time</th>
-                            <th>Name</th>
-                            <th>Contact</th>
-                            <th>Email</th>
-                            <th>City</th>
-                            <th>Relation</th>
-                            <th>Site</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Holder</th>         
+                            <th>Note</th>
+                            <th>Edit</th>
                           </tr>
-{% for i in acc_req %}
-                          <tr class="{{ i.alert }}">
+{% for i in wd_req %}
+                          <tr class="table-{{ i.alert }}">
                             <td>{{ i.date_posted|timesince }} ago</td>
-                            <td>{{ i.name }}</td>
-                            <td>{{ i.number }}</td>
-                            <td>{{ i.user.email }}</td>
-                            <td>{{ i.city }}</td>
-                            <td>{{ i.i_am }}</td>
-                            <td>{{ i.site }}</td>
-                            <td>                  
-                        <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
-                          <i class="fas fa-check"></i>
+                            <td>{{ i.amount }}</td>
+                            <td>{{ i.status }}</td>
+                            <td>{{ i.holder.email }}</td>
+                            <td>{{ i.note }}</td>
+                            <td>                   
+                        <a href="{% url 'console' wpk=i.id %}" class="btn btn-success btn-sm btn-circle">
+                          <i class="fas fa-pen"></i>
                         </a>
 
-                      </td>
-                      <td>
-                        <a href="{% url 'delete' i.id %}" class="btn btn-danger btn-sm btn-circle">
-                          <i class="fas fa-trash"></i>
-                        </a>                        
                       </td>
                             </tr>
 {% endfor %}
                         </tbody>
                       </table>
                     </div>
+
                 </div>
 
                 </div>
@@ -72,35 +66,28 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Member Requests</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Withdrawal Requests</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="table-responsive">
-                            <center><img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="{% static 'referral/img/undraw_done_checking_ty9a.svg' %}" alt="">
-                            <h5>All member requests are reviewed</h5></center>
+                            <center><img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="{% static 'referral/img/undraw_wallet_aym5.svg' %}" alt="">
+                            <h5>All withdrawal requests are reviewed</h5></center>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
 {% endif %}
-        </div>
+
 
 
 
         </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+
 
     </div>
     <!-- End of Content Wrapper -->

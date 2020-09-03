@@ -7,8 +7,14 @@ from users.forms import BankUpdateForm, NewReferral, NewAdminReferral, UpdateRef
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from django.http import HttpResponse
+from .tasks import send_email, sleepy
 
 SENDGRID_API_KEY='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'
+
+def index(request):
+	sleepy.delay(20)
+	return HttpResponse('speey 20')
+
 
 def home(request):
 	user=request.user
@@ -82,7 +88,7 @@ def console(request, rpk=None, wpk=None):
 					#subject=f'{name} book property at vihav with your reference',
 					#html_content='<h1>Welcome to Vihav Privilege</h1><strong>and easy to do anywhere, even with Python</strong>')
 				#sg = SendGridAPIClient(SENDGRID_API_KEY)
-				response = sg.send(message)
+				#response = sg.send(message)
 		if rpk != None and wpk==None:
 			ref = Referrals.objects.get(id=rpk)
 			if request.method == 'POST':
@@ -127,8 +133,30 @@ def all_req(request):
 	if request.user.is_superuser:
 		user = request.user
 		acc_req = Profile.objects.filter(verified=False).order_by('-date_posted')
+		all_acc = Profile.objects.filter(verified=True).order_by('-date_posted')
 		context = locals()
 		return render(request, 'referral/all_req.html', context)
+	else:
+		return render(request, 'referral/home.html')
+
+
+@login_required
+def all_acc(request):
+	if request.user.is_superuser:
+		user = request.user
+		all_acc = Profile.objects.filter(verified=True).order_by('-date_posted')
+		context = locals()
+		return render(request, 'referral/all_acc.html', context)
+	else:
+		return render(request, 'referral/home.html')
+
+@login_required
+def all_wreq(request):
+	if request.user.is_superuser:
+		user = request.user
+		wd_req = Withdraw.objects.order_by('-date_posted')
+		context = locals()
+		return render(request, 'referral/all_wreq.html', context)
 	else:
 		return render(request, 'referral/home.html')
 
@@ -159,15 +187,16 @@ def accept(request, pk):
 		acc = Profile.objects.get(id=pk)
 		acc.verified = True
 		acc.is_client = True
+		acc.reviewed_by = request.user.profile.name
 		acc.save()
 		email = acc.user.email
 		messages.success(request, f'Account created')
-		#message = Mail(
-		#	from_email='vihavgroup.dm@gmail.com',
-		#	to_emails=email)
-		#message.template_id = 'd-9cbebf3c4241460fbcac2b6c4d378d4b'
-		#sg = SendGridAPIClient(SENDGRID_API_KEY)
-		#response = sg.send(message)
+		message = Mail(
+			from_email='one@vihav.com',
+			to_emails=email)
+		message.template_id = 'd-83cb2344746840a39b3573e68e908588'
+		sg = SendGridAPIClient(SENDGRID_API_KEY)
+		response = sg.send(message)
 		return redirect('console')
 	else:
 		return render(request, 'referral/home.html')
@@ -191,6 +220,8 @@ def alert(status):
 		alert = 'warning'
 	elif status == 'fail':
 		alert = 'danger'
+	elif status == 'not reviewed':
+		alert = 'secondary'
 	return alert
 
 @login_required

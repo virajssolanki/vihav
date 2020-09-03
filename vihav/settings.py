@@ -128,4 +128,8 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = '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'
 EMAIL_USE_TLS = True
 
+CELERY_BROKER_URL = 'redis://h:p0773d7ffab3a5b8a2189f4518e886b3a86183aa8485dcea6049df66b7a0f836f@ec2-54-86-250-147.compute-1.amazonaws.com:12529'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
 django_heroku.settings(locals())
