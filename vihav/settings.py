@@ -114,6 +114,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 #-----------------------------------------------------
 
+MIDDLEWARE = [
+    # SecurityMiddleware must be listed before other middleware
+    'django.middleware.security.SecurityMiddleware',
+    # ...
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
 AUTH_USER_MODEL = 'users.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
