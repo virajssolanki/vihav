@@ -117,7 +117,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 MIDDLEWARE = [
     # SecurityMiddleware must be listed before other middleware
     'django.middleware.security.SecurityMiddleware',
-    # ...
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
