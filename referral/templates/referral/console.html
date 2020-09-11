@@ -153,7 +153,7 @@
                             <td>{{ i.i_am }}</td>
                             <td>{{ i.site }}</td>
                             <td>                  
-			                  <a href="{% url 'accept' i.id %}" class="btn btn-success btn-sm btn-circle">
+			                  <a href="{% url 'console' apk=i.id %}" class="btn btn-success btn-sm btn-circle">
 			                    <i class="fas fa-check"></i>
 			                  </a>
 
@@ -169,6 +169,35 @@
                       </table>
                     </div>
                     <a href="{% url 'all_req' %}">All requests &rarr;</a>
+
+
+
+<br><br>
+{% if a_form %}
+<form class="user" method="POST">
+                      {% csrf_token %}
+<fieldset class="form-group">
+
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-3 mb-0">
+        {{ a_form.credit|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-3 mb-0">
+        {{ a_form.membership|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-3 mb-0"><br>
+            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Accept Membership</button>
+      </div>
+    </div>
+    </div></div>
+</fieldset>
+    </form>
+{% endif %}
+
+
+
 
                 </div>
 
@@ -198,146 +227,42 @@
 
 {% endif %}
 
-
-{% if wd_req %}
-
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-lg-12">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Withdraw Requests</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    
-                    <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                          <tr class="table-secondary">
-                            <th>Time</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Holder</th>         
-                            <th>Note</th>
-                            <th>Edit</th>
-                          </tr>
-{% for i in wd_req|slice:":5" %}
-                          <tr class="table-{{ i.alert }}">
-                            <td>{{ i.date_posted|timesince }} ago</td>
-                            <td>{{ i.amount }}</td>
-                            <td>{{ i.status }}</td>
-                            <td>{{ i.holder.email }}</td>
-                            <td>{{ i.note }}</td>
-                            <td>                   
-                        <a href="{% url 'console' wpk=i.id %}" class="btn btn-success btn-sm btn-circle">
-                          <i class="fas fa-pen"></i>
-                        </a>
-
-                      </td>
-                            </tr>
-{% endfor %}
-                        </tbody>
-                      </table>
-                    </div>
-                    <a href="{% url 'all_wreq' %}">All requests &rarr;</a>
-
-<br><br>
-{% if wd_form %}
-        <div class="col-xl-12 col-md-12 mb-12">
-              <form class="user" method="POST">
-                      {% csrf_token %}
-                      <fieldset class="form-group">
-<div class="row">
-    <div class="form-row col-md-12">
-      <div class="form-group col-md-3 mb-0">
-        {{ wd_form.holder|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-2 mb-0">
-        {{ wd_form.amount|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-2 mb-0">
-        {{ wd_form.status|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-5 mb-0">
-        {{ wd_form.note|as_crispy_field }}
-      </div>
-    </div> 
-</div>
-
-</fieldset>
-    <div class="form-group">
-      <div class="row">
-        <div class=" col-md-3">
-            <button class="btn btn-primary btn-user btn-block" type="submit" name="u_withdraw">Update</button>
-        </div>
-        <div class="col-md-3">
-            <a href="{% url 'console' %}"><button class="btn btn-secondary btn-user btn-block" type="button">Cancal</button></a>
-        </div>
-      </div>
-    </div>
-    </form>
-</div>
-{% endif %}
-
-                </div>
-
-                </div>
-              </div>
-            </div>
-{% else %}
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-12 col-lg-12">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Withdrawal Requests</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="table-responsive">
-                            <center><img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="{% static 'referral/img/undraw_wallet_aym5.svg' %}" alt="">
-                            <h5>All withdrawal requests are reviewed</h5></center>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-{% endif %}
-
-
-
-
-
-
-
-
   <!-- form Modal-->
   <div class="modal fade" id="new_referral_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add new referral</h5>
+          <h5 class="modal-title" id="exampleModalLabel" style="
+    color: #dcb865;"><b>SUBMIT A REFERRAL</b></h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
-
-              <form class="user" method="POST">
-                      {% csrf_token %}
-                      <fieldset class="form-group">
-                      {{ r_form|crispy }}
-                      </fieldset>
-                      <div class="form-group">
-                      <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Add</button>
-                      </div>
-                </form>
+         <form class="user" method="POST">
+          <div class="form-fields">
+         {% csrf_token %}
+        <div class='row'>
+        <div class='col-md-6'>
+              {{ r_form.name|as_crispy_field }}
+        </div>
+        <div class='col-md-6'>
+              {{ r_form.last_name|as_crispy_field }}
+        </div>
+        </div>
+        <div class='row'>
+        <div class='col-md-12'>
+              {{ r_form.contact_number|as_crispy_field }}
+              {{ r_form.email|as_crispy_field }}
+              {{ r_form.city|as_crispy_field }}
+              {{ r_form.reference_email|as_crispy_field }}
+        </div>
+      </div>
+         <div class="form-group">
+            <button class="btn btn-primary btn-user btn-block" type="submit" name="new_referral">SUBMIT</button>
+         </div>
+         </div>
+         </form>
 
         </div>
       </div>

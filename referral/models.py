@@ -22,14 +22,32 @@ W_ALERT_CHOICES = (
     ('table-warning', 'yellow (pending)'),
     ('table-danger','red (canceled)'),
 )
+
+SITES = (
+    ('KEYSTONE SKYVILLAS', 'KEYSTONE SKYVILLAS'),
+    ('WEALTH SQUARE', 'WEALTH SQUARE'),
+    ('VIHAV BUSINESS SQUARE', 'VIHAV BUSINESS SQUARE'),
+    ('VIHAV SUPREMUS', 'VIHAV SUPREMUS'),
+    ('VIHAV SKYONE', 'VIHAV SKYONE'),
+    ('VIHAV TRADE CENTRE', 'VIHAV TRADE CENTRE'),
+    ('VIHAV KEYSTONE MANSIONS', 'VIHAV KEYSTONE MANSIONS'),
+    ('VIHAV KEYSTONE MANSIONS-2', 'VIHAV KEYSTONE MANSIONS-2'),
+    ('VIHAV ELITE SQUARE', 'VIHAV ELITE SQUARE'),
+    ('VIAHV EXCELUS', 'VIAHV EXCELUS'),
+    ('VIHAV ENSIGN', 'VIHAV ENSIGN'),
+    ('Not Sure ', 'Not Sure'),
+)
+
 class Referrals(models.Model):
 	name = models.CharField(max_length=50, blank=False, default='')
+	last_name = models.CharField(max_length=50, blank=False, default='')
 	contact_number = models.CharField(max_length=10, blank=False, default='')
 	email = models.EmailField(blank=True)
 	city = models.CharField(max_length=100, blank=True)
 	date_posted = models.DateTimeField(default=timezone.now)
 	amount = models.FloatField(blank=True, default=0)
 	status = models.CharField(max_length=30, default='not reviewed', choices=STATUS_CHOICES)
+	site = models.CharField(max_length=30, blank=True, choices=SITES)
 	alert = models.CharField(max_length=30, default='warning', choices=ALERT_CHOICES, blank=True)
 	note = models.TextField(max_length=150, blank=True)
 	reference = models.ForeignKey(User, on_delete=models.CASCADE)

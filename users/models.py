@@ -56,6 +56,12 @@ IAM_CHOICES = (
     ('Other', 'Other'),
 )
 
+M_CHOICES = (
+    ('Silver', 'Silver'),
+    ('Gold', 'Gold'),
+    ('Platinum', 'Platinum'),
+)
+
 SITES = (
     ('KEYSTONE SKYVILLAS', 'KEYSTONE SKYVILLAS'),
     ('WEALTH SQUARE', 'WEALTH SQUARE'),
@@ -79,20 +85,24 @@ class Profile(models.Model):
     city = models.CharField(max_length=100, blank=True)
     i_am = models.CharField(max_length=40, blank=True, choices=IAM_CHOICES)
     site = models.CharField(max_length=100, blank=True, choices=SITES)
+    membership = models.CharField(max_length=100, blank=True, choices=M_CHOICES)
     verified = models.BooleanField(default=False)
     is_client = models.BooleanField(default=False)
     reviewed_by = models.CharField(max_length=50, blank=True)
+    credit = models.IntegerField(blank=True, default=0)
 
     def __str__(self):
         return f'{self.user.profile.name} Profile'
 
 ACC_TYPE_CHOICES = (
-    ('current','current'),
-    ('saving', 'saving'),
+    ('Current','Current'),
+    ('Saving', 'Saving'),
+    ('Other','Other'),
 )
 
 class Bank(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bank_status = models.CharField(max_length=10, default="")
     date_posted = models.DateTimeField(default=timezone.now)
     account_holder_name = models.CharField(max_length=100, default="")
     bank_name = models.CharField(max_length=100, default="")

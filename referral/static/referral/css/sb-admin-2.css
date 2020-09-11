@@ -10,6 +10,21 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+ #id_account_type, #id_site, #id_status, #id_holder, #id_membership {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #dcb865;
+  border-radius: 10px;
+  color: #dcb865;
+}
+
+#id_note, #id_Message {
+  border: 1px solid #dcb865;
+  border-radius: 10px;
+  color: #dcb865;
+}
+
  .form-group label {
   display: block;
   margin-bottom: 2px;
@@ -29,15 +44,6 @@
   border-radius: 10px;
   outline: 0;
 }
-
-#id_account_type {
-  width: 100%;
-  height: 40px;
-  border: 1px solid #dcb865;
-  border-radius: 10px;
-  color: #dcb865;
-}
-
 
 .navbar-brand{
  display: none; 
@@ -193,7 +199,7 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #6589DC;
   text-decoration: none;
   background-color: transparent;
 }
@@ -2422,8 +2428,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #dcb865;
+  background-color: #bd9a49;
+  border-color: #bd9a49;
   box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
 }
 
@@ -3260,7 +3266,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #4e73df;
+  background-color: #dcb865;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -5759,9 +5765,9 @@ a.close.disabled {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
+  background-color: #FBF6D9;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(220, 184, 101, 1);
   border-radius: 0.3rem;
   outline: 0;
 }

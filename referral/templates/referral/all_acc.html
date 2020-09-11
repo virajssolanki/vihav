@@ -30,6 +30,8 @@
                             <th>Contact</th>
                             <th>Email</th>
                             <th>Adress</th>
+                            <th>Membership</th>
+                            <th>Bank</th>
                             <th>Relation</th>
                             <th>Reviewed By</th>
                             <th>Site</th>
@@ -37,10 +39,12 @@
                           </tr>
 {% for i in all_acc %}
                           <tr class="{{ i.alert }}">
-                            <td>{{ i.name }}</td>
+                            <td>{{ i.name }} {{ i.last_name }} </td>
                             <td>{{ i.number }}</td>
                             <td>{{ i.user.email }}</td>
                             <td>{{ i.city }}</td>
+                            <td>{{ i.membership }}</td>
+                            <td>{{ i.user.bank.bank_status }}</td>
                             <td>{{ i.i_am }}</td>
                             <td>{{ i.reviewed_by }}</td>
                             <td>{{ i.site }}</td>

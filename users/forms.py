@@ -59,6 +59,14 @@ class ProfileUpdateForm(forms.ModelForm):
 		model = Profile
 		fields = ['name', 'city', 'number']
 
+class MemberAcceptForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ['credit', 'membership']
+	def __init__(self, *args, **kwargs):
+		super(MemberAcceptForm, self).__init__(*args, **kwargs)
+		self.fields['credit'].label = "Welcome Credit"
+
 class BankUpdateForm(forms.ModelForm):
 
 	class Meta:
@@ -69,13 +77,13 @@ class NewReferral(forms.ModelForm):
 
 	class Meta:
 		model = Referrals
-		fields = ['name', 'contact_number', 'email', 'city']
+		fields = ['name', 'last_name', 'contact_number', 'email', 'city', 'site']
 
 class NewAdminReferral(forms.ModelForm):
 	reference_email = forms.EmailField()
 	class Meta:
 		model = Referrals
-		fields = ['name', 'contact_number', 'email', 'city', 'reference_email']
+		fields = ['name', 'last_name', 'contact_number', 'email', 'city', 'reference_email']
 
 class UpdateReferral(forms.ModelForm):
 	class Meta:
@@ -84,6 +92,10 @@ class UpdateReferral(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(UpdateReferral, self).__init__(*args, **kwargs)
 		self.fields['note'].widget.attrs['rows'] = 5
+
+class ContactUsForm(forms.Form):
+	Subject = forms.CharField(required=True)
+	Message = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":20}),required=True)
 
 class UpdateWithdraw(forms.ModelForm):
 	class Meta:

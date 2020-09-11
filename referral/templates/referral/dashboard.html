@@ -36,7 +36,17 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
-
+<style type="text/css">
+  html,body {
+    height:100%;
+}
+.h_iframe iframe {
+    position:absolute;
+    left:0;
+    width:100%;
+    height:100%;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -83,7 +93,8 @@ Your One Vihav account is under review. Our support team will process your appli
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'referral/img/undraw_access_denied_6w73.svg' %}" alt="">
                           </div>
                           <center><h3>Sorry! <br>This programm is exculsive to Vihav's associates only. <br> We are unable to find your details on our database.</h3>
-                            Vihav associates but unble to create account ? <a target="_blank" rel="nofollow" href="#">Call Us</a> <br><br>
+                            Vihav associates but unble to create account ?
+                            <a href="#" data-target="#new_contact_form" data-toggle="modal" class="d-inline-block d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-50"></i> Contact Us</a> <br><br>
                             <a href="{% url 'logout' %}">Log out</a>
                             </center>
                         </div>
@@ -97,9 +108,11 @@ Your One Vihav account is under review. Our support team will process your appli
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <a class="navbar-brand" href="#">ONE VIHAV</a>
-
+<div class="container">
+          <a class="navbar-brand" href="{% url 'login' %}">
+            <img style="width: 8rem;" src="{% static 'referral/assets/image/hero-logo.png' %}">
+          </a>
+</div>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Alerts -->
@@ -115,10 +128,7 @@ Your One Vihav account is under review. Our support team will process your appli
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{% url 'about' %}">
-                  <i class="fas fa-info fa-sm fa-fw mr-2 text-gray-400"></i>
-                  about
-                </a>
+                <a class="dropdown-item" href="#" data-target="#new_contact_form" data-toggle="modal" class="d-inline-block d-sm-inline-block"> <i class="fas fa-envelope fa-sm fa-fw mr-2 text-gray-400"></i>Contact Us</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -150,7 +160,7 @@ Your One Vihav account is under review. Our support team will process your appli
       </main>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Dashboard | {{ request.user.profile.membership }} Membership </h1>
           </div>
 
 
@@ -264,7 +274,8 @@ Your One Vihav account is under review. Our support team will process your appli
                           <div class="text-center">
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="{% static 'referral/img/undraw_empty_xct9.svg' %}" alt="">
                           </div>
-                          <center>It seems that you don't have any referrals yet. <a target="_blank" rel="nofollow" href="#">Contact Us</a> If you have refered but unable to see referrals on dashboard</center>
+                          <center>It seems that you don't have any referrals yet. 
+                          <a href="#" data-target="#new_contact_form" data-toggle="modal" class="d-inline-block d-sm-inline-block"> Contact Us</a> If you have refered but unable to see referrals on dashboard</center>
                         </div>
 
         {% endif %}
@@ -290,7 +301,7 @@ Your One Vihav account is under review. Our support team will process your appli
                             <td>{{ bank_info.bank_name }}</td>
                           </tr>
                           <tr>
-                            <th>Account NUmber</th>
+                            <th>Account Number</th>
                             <td>{{ bank_info.account_number }}</td>
                           </tr>
                           <tr>
@@ -319,7 +330,34 @@ Your One Vihav account is under review. Our support team will process your appli
                  <form class="user" method="POST">
                  {% csrf_token %}
                  <fieldset class="form-group">
-                  {{ b_form|crispy }}
+     <div class='row'>
+        <div class='col-md-12'>
+              {{ b_form.account_holder_name|as_crispy_field }}
+        </div>
+     </div>
+      <div class='row'>
+        <div class='col-md-6'>
+              {{ b_form.bank_name|as_crispy_field }}
+        </div>
+        <div class='col-md-6'>
+              {{ b_form.account_number|as_crispy_field }}
+        </div>
+      </div>
+
+       <div class='row'>
+        <div class='col-md-6'>
+              {{ b_form.IFSC_code|as_crispy_field }}
+        </div>
+        <div class='col-md-6'>
+              {{ b_form.branch|as_crispy_field }}
+        </div>
+      </div>
+
+     <div class='row'>
+        <div class='col-md-12'>
+              {{ b_form.account_type|as_crispy_field }}
+        </div>
+     </div>
                  </fieldset>
                  <div class="form-group">
                  <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Save</button>
@@ -332,7 +370,7 @@ Your One Vihav account is under review. Our support team will process your appli
 
 
 
-
+<!---
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
                       <h6 class="m-0 font-weight-bold text-primary">Withdraw requests</h6>
@@ -372,23 +410,15 @@ Your One Vihav account is under review. Our support team will process your appli
                           <center>It seems that you don't have any withdraw requests yet. <br><br><a href="{% url 'withdraw' %}">New withdarw request &rarr;</a></center>
                         </div>
 {% endif %}
+                </div>  --->
                 </div>
-                </div>
-
+ 
           </div>
           </div>
 
         </div>
 
-              <!-- Footer -->
-              <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                  <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Vihav Group 2020</span>
-                  </div>
-                </div>
-              </footer>
-              <!-- End of Footer -->
+
 
         </div>
             <!-- End of Content Wrapper -->
@@ -397,13 +427,28 @@ Your One Vihav account is under review. Our support team will process your appli
    </div>
   <!-- End of Page Wrapper -->
 
+
+<div class="h_iframe">
+<iframe src="http://vihavprivilege.pe.hu/" target="_blank"  target="_top" frameborder="0" allowfullscreen></iframe>
+</div>
+              <!-- Footer --
+              <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                  <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Vihav Group 2020</span>
+                  </div>
+                </div>
+              </footer>
+              !-- End of Footer -->
+
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #dcb865;"><b>READY TO LEAVE?</b></h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -422,22 +467,68 @@ Your One Vihav account is under review. Our support team will process your appli
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">We will need following details to add new referral to your account</h5>
+          <h5 class="modal-title" id="exampleModalLabel" style="
+    color: #dcb865;"><b>SUBMIT A REFERRAL</b></h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
-
          <form class="user" method="POST">
+          <div class="form-fields">
          {% csrf_token %}
-         <fieldset class="form-group">
-          {{ r_form|crispy }}
-         </fieldset>
+        <div class='row'>
+        <div class='col-md-6'>
+              {{ r_form.name|as_crispy_field }}
+        </div>
+        <div class='col-md-6'>
+              {{ r_form.last_name|as_crispy_field }}
+        </div>
+        </div>
+        <div class='row'>
+        <div class='col-md-12'>
+              {{ r_form.contact_number|as_crispy_field }}
+              {{ r_form.email|as_crispy_field }}
+              {{ r_form.city|as_crispy_field }}
+              {{ r_form.site|as_crispy_field }}
+        </div>
+      </div>
+         <div class="form-group">
+            <button class="btn btn-primary btn-user btn-block" type="submit" name="new_referral">SUBMIT</button>
+         </div>
+         </div>
+         </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- form Modal-->
+  <div class="modal fade" id="new_contact_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="
+    color: #dcb865;"><b>Contact Us</b></h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <form action="{% url 'send_message' %}" class="user"  method="POST">
+          <div class="form-fields">
+         {% csrf_token %}
+         {{ c_form|crispy }}
+         </div>
          <div class="form-group">
             <button class="btn btn-primary btn-user btn-block" type="submit" name="new_referral">SUBMIT</button>
          </div>
          </form>
+         <center>OR</center>
+         <center>Call <a href="tel:7201985985"> 7201985985</a></center>
+         </div>
 
         </div>
       </div>

@@ -26,7 +26,7 @@ SECRET_KEY = '(-6&2#epsfbxag^^(c1_0#m4i#r$na@szd_^p&#zup2p5*v^)t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vihavpriviledge.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['vihavpriviledge.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -126,7 +126,17 @@ MIDDLEWARE = [
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
+
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
 
 AUTH_USER_MODEL = 'users.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -139,8 +149,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = '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'
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'One Vihav <one@vihav.com>'
 
 CELERY_BROKER_URL = 'redis://h:p0773d7ffab3a5b8a2189f4518e886b3a86183aa8485dcea6049df66b7a0f836f@ec2-54-86-250-147.compute-1.amazonaws.com:12529'
 CELERY_ACCEPT_CONTENT = ['json']

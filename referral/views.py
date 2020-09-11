@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import User, Bank, Profile
 from .models import Referrals, Withdraw
-from users.forms import BankUpdateForm, NewReferral, NewAdminReferral, UpdateReferral, UpdateWithdraw
+from users.forms import BankUpdateForm, NewReferral, NewAdminReferral, UpdateReferral, UpdateWithdraw, MemberAcceptForm, ContactUsForm
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from django.http import HttpResponse
@@ -39,6 +39,7 @@ def dashboard(request, email):
 				if b_form.is_valid():
 					bank = b_form.save(commit=False)
 					bank.user = request.user
+					bank.bank_status = 'Connected'
 					bank.save()
 					messages.success(request, f'Bank Details Updated')
 					#send_mail('subject', 'body of the message', 'virazssolanki@gmail.com', [email])
@@ -55,6 +56,7 @@ def dashboard(request, email):
 					return redirect('dashboard', email=email)
 		b_form = BankUpdateForm(instance=request.user.bank)
 		r_form = NewReferral()
+		c_form = ContactUsForm()
 		referrals = Referrals.objects.filter(reference=user).order_by('-date_posted')
 		success_referral = Referrals.objects.filter(reference=user).filter(status='success').order_by('-date_posted')
 		pending_referral = Referrals.objects.filter(reference=user).filter(status='pending').order_by('-date_posted')
@@ -64,12 +66,13 @@ def dashboard(request, email):
 		for i in referrals:
 			if i.status == 'success':
 				total = total + i.amount
+		total = total + user.profile.credit
 
 	context = locals()
 	return render(request, 'referral/dashboard.html', context)
 
 @login_required
-def console(request, rpk=None, wpk=None):
+def console(request, rpk=None, apk=None):
 	if request.user.is_superuser:
 		user = request.user
 		if request.method == 'POST':
@@ -89,7 +92,7 @@ def console(request, rpk=None, wpk=None):
 					#html_content='<h1>Welcome to Vihav Privilege</h1><strong>and easy to do anywhere, even with Python</strong>')
 				#sg = SendGridAPIClient(SENDGRID_API_KEY)
 				#response = sg.send(message)
-		if rpk != None and wpk==None:
+		if rpk != None and apk==None:
 			ref = Referrals.objects.get(id=rpk)
 			if request.method == 'POST':
 				urform = UpdateReferral(request.POST, instance=ref)
@@ -104,20 +107,43 @@ def console(request, rpk=None, wpk=None):
 			else:
 				urform = UpdateReferral(instance=ref)
 
-		if wpk != None and rpk==None:
-			w = Withdraw.objects.get(id=wpk)
+#		if wpk != None and rpk==None:
+#			w = Withdraw.objects.get(id=wpk)
+#			if request.method == 'POST':
+#				wd_form = UpdateWithdraw(request.POST, instance=w)
+#				if wd_form.is_valid:
+#					w = wd_form.save(commit=False)
+#					status  = wd_form.cleaned_data.get('status')
+#					lert = alert(status)
+#					w.alert = lert
+#					w.save()
+#					messages.success(request, f'Withdraw request updated')
+#					return redirect('console')
+#			else:
+#				wd_form = UpdateWithdraw(instance=w)
+
+
+		if apk != None and rpk==None:
+			acc = Profile.objects.get(id=apk)
 			if request.method == 'POST':
-				wd_form = UpdateWithdraw(request.POST, instance=w)
-				if wd_form.is_valid:
-					w = wd_form.save(commit=False)
-					status  = wd_form.cleaned_data.get('status')
-					lert = alert(status)
-					w.alert = lert
-					w.save()
-					messages.success(request, f'Withdraw request updated')
+				a_form = MemberAcceptForm(request.POST, instance=acc)
+				if a_form.is_valid:
+					acc.verified = True
+					acc.is_client = True
+					acc.reviewed_by = request.user.profile.name
+					acc.save()
+					a_form.save()
+					email = acc.user.email
+					messages.success(request, f'Account created')
+					message = Mail(
+						from_email='one@vihav.com',
+						to_emails=email)
+					message.template_id = 'd-83cb2344746840a39b3573e68e908588'
+					sg = SendGridAPIClient(SENDGRID_API_KEY)
+					response = sg.send(message)
 					return redirect('console')
 			else:
-				wd_form = UpdateWithdraw(instance=w)
+				a_form = MemberAcceptForm(instance=acc)
 
 		r_form = NewAdminReferral()
 		acc_req = Profile.objects.filter(verified=False).order_by('-date_posted')
@@ -180,6 +206,34 @@ def all_ref(request):
 		return render(request, 'referral/all_ref.html', context)
 	else:
 		return render(request, 'referral/home.html')
+
+@login_required
+def send_message(request):
+	user = request.user
+	if request.method == 'POST':
+		c_form = ContactUsForm(request.POST)
+		if c_form.is_valid():
+			subject  = c_form.cleaned_data.get('Subject')
+			Msg  = c_form.cleaned_data.get('Message')
+			messages.success(request, f'Message sent')
+			message = Mail(
+					from_email='one@vihav.com',
+					to_emails='one@vihav.com',
+					subject=subject)
+			message.dynamic_template_data = {
+					'subject': subject,
+					'name': user.profile.name,
+					'email': user.email,
+					'number': user.profile.number,
+					'msg': Msg
+						}
+			message.template_id = 'd-dd10be4c486840cd8e6a4395b094b448'
+					
+			sg = SendGridAPIClient(SENDGRID_API_KEY)
+			response = sg.send(message)
+		return redirect('login')
+	else:
+		return redirect('login')
 
 @login_required
 def accept(request, pk):

@@ -35,6 +35,22 @@ def signup(request):
 				message.template_id = 'd-581e4afb46eb4ee08bfa2eb11128474b'
 				sg = SendGridAPIClient(SENDGRID_API_KEY)
 				response = sg.send(message)
+
+				message = Mail(
+					from_email='one@vihav.com',
+					to_emails='one@vihav.com')
+				message.template_id = 'd-06939b7504624457bf3fbc78b6b449c0'
+				message.dynamic_template_data = {
+						'name': name,
+						'last_name': last_name,
+						'email': email,
+						'number': number,
+						'address': city,
+						'relation': i_am,
+						'site': site,
+							}
+				sg = SendGridAPIClient(SENDGRID_API_KEY)
+				response = sg.send(message)			
 				return redirect('dashboard', email=email)				
 		else:
 			form = UserRegisterForm()
