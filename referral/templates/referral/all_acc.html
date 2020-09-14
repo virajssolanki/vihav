@@ -202,6 +202,7 @@
                             <th>Email</th>
                             <th>Adress</th>
                             <th>Membership</th>
+                            <th>Credit</th>
                             <th>Bank</th>
                             <th>Relation</th>
                             <th>Reviewed By</th>
@@ -218,6 +219,7 @@
                             <td>{{ i.user.email }}</td>
                             <td>{{ i.city }}</td>
                             <td>{{ i.membership }}</td>
+                            <td>{{ i.credit }}</td>
                             <td>{{ i.user.bank.bank_status }}</td>
                             <td>{{ i.i_am }}</td>
                             <td>{{ i.reviewed_by }}</td>
@@ -312,9 +314,15 @@
 <script>
 $(document).ready(function() {
     $('#myTable').DataTable( {
-        dom: "<'row'<'col-sm-3'f><'col-sm-3 text-right'l><'col-sm-6 text-right'B>>" +
-    "<'row'<'col-sm-12'tr>>" +
-    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        colReorder: true,
+        scrollX:        true,
+        scrollCollapse: true,
+        fixedColumns:   true,
+        dom: 
+        "<'row'<'col-sm-3'f><'col-sm-3 text-right'l><'col-sm-6 text-right'B>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+
         buttons: [
             'csv', 'excel', 'print', 'colvis'
         ]
