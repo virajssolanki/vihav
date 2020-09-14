@@ -258,10 +258,7 @@ Your One Vihav account is under review. Our support team will process your appli
                   <div class="col-auto">
                     <div class="h5 mb-0 text-gray-600">₹ {{ i.amount }}
                     </div>
-                  </div>
-                  <div class="col-auto">
-                      <i class="fa fa-inr fa-2x text-gray-300"></i>
-                  </div>                    
+                  </div>                   
                 </div>
               </div>
             </div><br>
@@ -427,10 +424,14 @@ Your One Vihav account is under review. Our support team will process your appli
    </div>
   <!-- End of Page Wrapper -->
 
+{% include 'referral/index.html' %}
+
  <!--
 <div class="h_iframe">
 <iframe src="http://vihavprivilege.pe.hu/" target="_blank"  target="_top" frameborder="0" allowfullscreen></iframe>
 </div>
+
+
               Footer --
               <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -546,7 +547,7 @@ Your One Vihav account is under review. Our support team will process your appli
 
   <!-- Core plugin JavaScript-->
   <script src="{% static 'referral/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
+  
   <!-- Custom scripts for all pages-->
   <script src="{% static 'referral/js/sb-admin-2.min.js' %}"></script>
 

@@ -25,6 +25,7 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+ 
   <!-- Custom styles for this template-->
   <link rel="stylesheet" type="text/css" href="{% static 'referral/css/sb-admin-2.css' %}">
 <!-- Hotjar Tracking Code for https://vihavpriviledge.herokuapp.com/ -->
@@ -187,12 +188,22 @@
     </div>
   </div>
   
+  <!-- datatable -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
+
+<script>
+  $(document).ready( function () {
+    $('#table').DataTable();
+} );
+</script>
+
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'referral/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'referral/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="{% static 'referral/vendor/jquery-easing/jquery.easing.min.js' %}"></script>

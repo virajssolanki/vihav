@@ -170,7 +170,7 @@ def all_req(request):
 def all_acc(request):
 	if request.user.is_superuser:
 		user = request.user
-		all_acc = Profile.objects.filter(verified=True).order_by('-date_posted')
+		all_acc = Profile.objects.all()
 		context = locals()
 		return render(request, 'referral/all_acc.html', context)
 	else:

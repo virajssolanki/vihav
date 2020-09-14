@@ -1,0 +1,204 @@
+p {
+    font-family   : 'Lato', sans-serif;
+    margin        : 0 0 20px;
+    color         : #000000;
+    font-size     : 18px;
+    line-height   : 24px;
+    letter-spacing: 0.8px;
+}
+
+section {
+    padding: 50px 0;
+}
+
+#program-sec {
+    background-color: #fbf6d9;
+}
+
+.divider {
+    text-align    : center;
+    padding-top   : 8px;
+    padding-bottom: 8px;
+}
+
+.divider span {
+    display   : block;
+    width     : 141px;
+    margin    : 0 auto;
+    border-top: 3px solid #cc9e60;
+}
+
+.home-img {
+    display      : block;
+    margin       : auto;
+    width        : 85%;
+    border-radius: 6px;
+}
+
+.heading-title {
+    color      : #28211a;
+    font-family: "Nunito Sans", Sans-serif;
+    font-size  : 3em;
+    font-weight: 800;
+}
+
+#work-sec .card {
+    height       : 100%;
+    border       : none;
+    border-radius: 5px;
+    box-shadow   : 0 3px 40px rgba(36, 36, 36, .1);
+}
+
+#work-sec .card-title {
+    font-family: "Playfair Display", serif;
+    font-size  : 24px;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+
+#work-sec .card-text {
+    font-family   : 'Lato', sans-serif;
+    color         : #616161;
+    font-size     : 16px;
+    letter-spacing: unset;
+}
+
+#work-sec .card-badge {
+    position        : absolute;
+    top             : 25px;
+    left            : 25px;
+    padding         : 8px 18px;
+    border-radius   : 50px;
+    color           : #FFFFFF;
+    background-color: #000000;
+    font-size       : 14px;
+}
+
+
+#testimonials-sec {
+    padding-bottom: 150px;
+}
+
+#testimonials-sec .carousel-inner {
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+#testimonials-sec .item-card {
+    border-radius : 8px;
+    box-shadow    : 9px 11px 14px 0px rgba(0, 0, 0, 0.1);
+    padding       : 40px;
+    padding-bottom: 60px;
+}
+
+#testimonials-sec .fa-quote-left {
+    color        : #FBF6D8;
+    font-size    : 48px;
+    margin-bottom: 1.5rem;
+}
+
+#testimonials-sec .feedback {
+    letter-spacing: unset;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4F4F4F;
+}
+
+#testimonials-sec .fa-star {
+    color: #fec42d;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+#testimonials-sec .user-profile {
+    margin-top: 20px;
+    margin-bottom: -170px;
+}
+
+#testimonials-sec .user-image {
+    padding         : 5px;
+    border-radius   : 100%;
+    display         : inline-block;
+    background-color: #fff;
+}
+
+#testimonials-sec .user-image img {
+    width        : 70px;
+    border-radius: 100%;
+}
+
+#testimonials-sec .user-name {
+    font-size: 18px;
+}
+
+#testimonials-sec .user-desig {
+    font-size: 14px;
+    color    : #616161;
+}
+
+#accordion {
+    max-width: 626px;
+    display  : block;
+    margin   : auto;
+}
+
+#accordion .card-header {
+    background-color: #E5E5E5;
+    cursor: pointer;
+    border          : none;
+}
+
+#accordion .btn {
+    background-color: transparent;
+    display         : block;
+    width           : 100%;
+    text-align      : left;
+}
+
+#accordion .btn:focus {
+    outline   : 0;
+    box-shadow: unset
+}
+
+#accordion .card {
+    margin-bottom: 4px;
+    border       : none !important;
+}
+
+#accordion .toggle-icon{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#accordion .toggle-icon i{
+    color: #cc9e60;
+    font-size: 22px;
+}
+
+#accordion .active .fa-angle-down{
+    display: none;
+}
+
+#accordion .active .fa-angle-up{
+    display: unset;
+}
+
+#accordion .fa-angle-up{
+    display: none;
+}
+
+@media(max-width: 768px) {
+    .home-img {
+        width: 100%;
+    }
+
+    #testimonials-sec .user-profile {
+        left: 37%;
+    }
+
+    .carousel-inner .col-md-4 {
+        margin-bottom: 7.5rem;
+    }
+}

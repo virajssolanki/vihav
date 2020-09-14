@@ -1,10 +1,180 @@
-{% extends "referral/consolebase.html" %}
-{% load crispy_forms_tags %}
 {% load static %}
-{% block title %}<title>console | all_requests</title>{% endblock title %}
-{% block head %}<h4>Console | all account creation request </h4>{% endblock head %}
+{% load gravatar %}
+{% load percentage %}
+{% load crispy_forms_tags %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Console | One Vihav</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'referral/assets/image/favicon.ico' %}">
+  <!-- Custom fonts for this template-->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/af-2.3.5/b-1.6.3/b-colvis-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/cr-1.5.2/fc-3.3.1/fh-3.1.7/kt-2.5.2/r-2.2.5/rg-1.1.2/rr-1.2.7/sc-2.0.2/sp-1.1.1/sl-1.3.1/datatables.min.css"/>
+<!-- data table-->
+
+
+
+  <link rel="stylesheet" type="text/css" href="{% static 'referral/vendor/fontawesome-free/css/all.min.css' %}">
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Custom styles for this page -->
+
+ 
+  <!-- Custom styles for this template-->
+  <link rel="stylesheet" type="text/css" href="{% static 'referral/css/sb-admin-2.css' %}">
+
+<!-- Hotjar Tracking Code for https://vihavpriviledge.herokuapp.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1956923,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'console' %}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>CONSOLE</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'all_acc' %}" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-user"></i>
+          <span>All Members</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'all_ref' %}" aria-expanded="true">
+          <i class="fas fa-fw fa-user"></i>
+          <span>All Referrals</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'all_req' %}" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Member Requests</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'all_wreq' %}" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Withdrawal Requests</span>
+        </a>
+      </li>-->
+
+
+      
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+
+          <!-- Topbar Navbar -->
+          <!-- Topbar Navbar -->
+          
+            <!-- Nav Item - Alerts -->
+          <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+
+          </div>
+        
+        <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ user.profile.name }}</span>
+                <img class="img-profile rounded-circle" src="{{ user|gravatar }}">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+        </nav>
+        <!-- End of Topbar -->
+      <main role="main" class="container">
+      <div class="row">
+          <div class="container">
+          {% if messages %}
+          {% for i in messages %}
+          <div class="alert alert-info">
+            {{ i }}
+          </div>
+          {% endfor %}
+          {% endif %}
+          </div>
+          
+      </div>
+      </main>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -23,9 +193,10 @@
                 <div class="card-body">
                     
                     <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <tbody>
-                          <tr class="table-secondary">
+                    <table id="myTable" width="100%" cellspacing="0" class="table table-bordered table-striped table-bordered">
+                        
+                        <thead>
+                          <tr>
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
@@ -35,9 +206,12 @@
                             <th>Relation</th>
                             <th>Reviewed By</th>
                             <th>Site</th>
-                            
-                          </tr>
+                           </tr>
+                        </thead>
+
+<tbody>
 {% for i in all_acc %}
+                        
                           <tr class="{{ i.alert }}">
                             <td>{{ i.name }} {{ i.last_name }} </td>
                             <td>{{ i.number }}</td>
@@ -50,7 +224,7 @@
                             <td>{{ i.site }}</td>
                             </tr>
 {% endfor %}
-                        </tbody>
+</tbody>
                       </table>
                     </div>
                 </div>
@@ -81,8 +255,6 @@
 {% endif %}
         </div>
 
-
-
         </div>
       <!-- End of Main Content -->
 
@@ -92,4 +264,61 @@
 
   </div>
   <!-- End of Page Wrapper -->
-{% endblock %}
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">READY TO LEAVE ?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- datatable -->
+
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'referral/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'referral/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/af-2.3.5/b-1.6.3/b-colvis-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/cr-1.5.2/fc-3.3.1/fh-3.1.7/kt-2.5.2/r-2.2.5/rg-1.1.2/rr-1.2.7/sc-2.0.2/sp-1.1.1/sl-1.3.1/datatables.min.js"></script>
+
+
+  <script src="{% static 'referral/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'referral/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'referral/js/sb-admin-2.min.js' %}"></script>
+
+</body>
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable( {
+        dom: "<'row'<'col-sm-3'f><'col-sm-3 text-right'l><'col-sm-6 text-right'B>>" +
+    "<'row'<'col-sm-12'tr>>" +
+    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [
+            'csv', 'excel', 'print', 'colvis'
+        ]
+    } );
+} );
+</script>
+</html>
