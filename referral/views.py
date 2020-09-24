@@ -149,6 +149,7 @@ def console(request, rpk=None, apk=None):
 		acc_req = Profile.objects.filter(verified=False).order_by('-date_posted')
 		ref_req = Referrals.objects.order_by('-date_posted')
 		wd_req = Withdraw.objects.order_by('-date_posted')
+		all_acc = Profile.objects.all()
 		context = locals()
 		return render(request, 'referral/console.html', context)
 	else:
