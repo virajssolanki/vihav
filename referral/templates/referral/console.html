@@ -153,8 +153,9 @@
                             <th>Edit</th>
                           </tr>
                         </thead>
+<tbody>
 {% for i in ref_req %}
-                        <tbody>
+                        
                           <tr class="table-{{ i.alert }}">
                             <td>{{ i.date_posted|timesince }} ago</td>
                             <td>{{ i.name }}</td>
@@ -261,8 +262,10 @@
                             <th></th>
                           </tr>
                         </thead>
-{% for i in acc_req %}
+
                         <tbody>
+{% for i in acc_req %}
+                        
                           <tr class="{{ i.alert }}">
                             <td>{{ i.date_posted|timesince }} ago</td>
                             <td>{{ i.name }}</td>
@@ -276,12 +279,12 @@
 			                    <i class="fas fa-check"></i>
 			                  </a>
 
-			                </td>
-			                <td>
+			                      </td>
+			                      <td>
 			                  <a href="{% url 'delete' i.id %}" class="btn btn-danger btn-sm btn-circle">
 			                    <i class="fas fa-trash"></i>
 			                  </a>			                	
-			                </td>
+			                      </td>
                             </tr>
 {% endfor %}
                         </tbody>
@@ -519,13 +522,13 @@
   <!-- Custom scripts for all pages-->
   <script src="{% static 'referral/js/sb-admin-2.min.js' %}"></script>
 </body>
+
 <script>
 $(document).ready(function() {
     $('table.display').DataTable( {
         colReorder: true,
         scrollX:        true,
         scrollCollapse: true,
-        fixedColumns:   true,
         dom: 
         "<'row'<'col-sm-3'f><'col-sm-3 text-right'l><'col-sm-6 text-right'B>>" +
         "<'row'<'col-sm-12'tr>>" +
