@@ -114,6 +114,9 @@
         <!-- End of Topbar -->
       <main role="main" class="container">
       <div class="row">
+
+
+{% if a_form %}
           <div class="container">
 
           <div class="row">
@@ -128,8 +131,6 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="table-responsive">
-
-{% if a_form %}
 <form class="user" method="POST">
                       {% csrf_token %}
 <fieldset class="form-group">
@@ -150,9 +151,29 @@
     </div></div>
 </fieldset>
     </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
 {% endif %}
 
 {% if urform %}
+          <div class="container">
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"></h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="table-responsive">
         <div class="col-xl-12 col-md-12 mb-12">
               <form class="user" method="POST">
                       {% csrf_token %}
@@ -201,18 +222,14 @@
     </div>
     </form>
                </div>
-{% endif %}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
-
           </div>
+{% endif %}
+
           
       </div>
       </main>
