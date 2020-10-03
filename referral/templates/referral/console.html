@@ -36,6 +36,12 @@
   <!-- Custom styles for this template-->
   <link rel="stylesheet" type="text/css" href="{% static 'referral/css/sb-admin-2.css' %}">
 
+<script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+</script>
+
 <!-- Hotjar Tracking Code for https://vihavpriviledge.herokuapp.com/ -->
 <script>
     (function(h,o,t,j,a,r){
@@ -109,13 +115,103 @@
       <main role="main" class="container">
       <div class="row">
           <div class="container">
-          {% if messages %}
-          {% for i in messages %}
-          <div class="alert alert-info">
-            {{ i }}
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary"></h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="table-responsive">
+
+{% if a_form %}
+<form class="user" method="POST">
+                      {% csrf_token %}
+<fieldset class="form-group">
+
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-3 mb-0">
+        {{ a_form.credit|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-3 mb-0">
+        {{ a_form.membership|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-3 mb-0"><br>
+            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Accept Membership</button>
+      </div>
+    </div>
+    </div></div>
+</fieldset>
+    </form>
+{% endif %}
+
+{% if urform %}
+        <div class="col-xl-12 col-md-12 mb-12">
+              <form class="user" method="POST">
+                      {% csrf_token %}
+                      <fieldset class="form-group">
+<div class="row">
+  <div class="col-xl-8 col-lg-8 col-md-8">
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4 mb-0">
+        {{ urform.name|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ urform.contact_number|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ urform.email|as_crispy_field }}
+      </div>
+    </div>
+
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-4 mb-0">
+        {{ urform.status|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ urform.amount|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ urform.city|as_crispy_field }}
+      </div>
+    </div> 
+</div>
+    <div class="form-row col-md-4">
+    {{ urform.note|as_crispy_field }} 
+    </div>  
+</div>
+
+</fieldset>
+    <div class="form-group">
+      <div class="row">
+        <div class=" col-md-3">
+            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Update</button>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'console' %}"><button class="btn btn-secondary btn-user btn-block" type="button">Cancal</button></a>
+        </div>
+      </div>
+    </div>
+    </form>
+               </div>
+{% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          {% endfor %}
-          {% endif %}
+
+
+
+
+
           </div>
           
       </div>
@@ -176,56 +272,7 @@
                       </table>
                     </div>
                     <!-- <a href="{% url 'all_ref' %}">All referrals &rarr;</a> --->
-{% if urform %}
-        <div class="col-xl-12 col-md-12 mb-12">
-              <form class="user" method="POST">
-                      {% csrf_token %}
-                      <fieldset class="form-group">
-<div class="row">
-  <div class="col-xl-8 col-lg-8 col-md-8">
-    <div class="form-row col-md-12">
-      <div class="form-group col-md-4 mb-0">
-        {{ urform.name|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-4 mb-0">
-        {{ urform.contact_number|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-4 mb-0">
-        {{ urform.email|as_crispy_field }}
-      </div>
-    </div>
 
-    <div class="form-row col-md-12">
-      <div class="form-group col-md-4 mb-0">
-        {{ urform.status|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-4 mb-0">
-        {{ urform.amount|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-4 mb-0">
-        {{ urform.city|as_crispy_field }}
-      </div>
-    </div> 
-</div>
-    <div class="form-row col-md-4">
-    {{ urform.note|as_crispy_field }} 
-    </div>  
-</div>
-
-</fieldset>
-    <div class="form-group">
-      <div class="row">
-        <div class=" col-md-3">
-            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Update</button>
-        </div>
-        <div class="col-md-3">
-            <a href="{% url 'console' %}"><button class="btn btn-secondary btn-user btn-block" type="button">Cancal</button></a>
-        </div>
-      </div>
-    </div>
-    </form>
-               </div>
-{% endif %}
 
                 </div>
               </div>
@@ -290,30 +337,6 @@
                         </tbody>
                       </table>
                     </div>
-
-{% if a_form %}
-<form class="user" method="POST">
-                      {% csrf_token %}
-<fieldset class="form-group">
-
-<div class="row">
-  <div class="col-xl-12 col-lg-12 col-md-12">
-    <div class="form-row col-md-12">
-      <div class="form-group col-md-3 mb-0">
-        {{ a_form.credit|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-3 mb-0">
-        {{ a_form.membership|as_crispy_field }}
-      </div>
-      <div class="form-group col-md-3 mb-0"><br>
-            <button class="btn btn-primary btn-user btn-block" type="submit" name="bank_info">Accept Membership</button>
-      </div>
-    </div>
-    </div></div>
-</fieldset>
-    </form>
-{% endif %}
-
                 </div>
 
                 </div>
@@ -479,7 +502,7 @@
 
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade myModal" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -496,7 +519,6 @@
       </div>
     </div>
   </div>
-  
   <!-- datatable -->
 
 
