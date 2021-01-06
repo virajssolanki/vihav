@@ -92,7 +92,7 @@ class Profile(models.Model):
     credit = models.IntegerField(blank=True, default=0)
 
     def __str__(self):
-        return f'{self.user.profile.name} Profile'
+        return f'{self.user.profile.name} {self.user.profile.last_name} Profile'
 
 ACC_TYPE_CHOICES = (
     ('Current','Current'),
