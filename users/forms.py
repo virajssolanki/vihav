@@ -42,6 +42,15 @@ class UserRegisterForm(UserCreationForm):
 		widgets = {
 			'email' : forms.TextInput(attrs = {'placeholder': 'enter your enail adress'}),
 			}
+			
+	def clean(self):
+		super(UserRegisterForm, self).clean()
+		number = self.cleaned_data.get('contact_number')
+
+		if len(number) > 10:
+			self._errors['number'] = self.error_class(
+				['please enter valid mobile number without country code'])
+		return self.cleaned_data
 
 class UserUpdateForm(forms.ModelForm):
 	email = forms.EmailField()
@@ -58,6 +67,15 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['name', 'city', 'number']
+
+	def clean(self):
+		super(ProfileUpdateForm, self).clean()
+		number = self.cleaned_data.get('number')
+
+		if len(number) > 10:
+			self._errors['number'] = self.error_class(
+				['please enter valid mobile number without country code'])
+		return self.cleaned_data
 
 class MemberAcceptForm(forms.ModelForm):
 	class Meta:
